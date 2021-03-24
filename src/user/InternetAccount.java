@@ -1,3 +1,5 @@
+package user;
+
 /**
  * 
  * The InternetAccount object holds all the info for the account login and

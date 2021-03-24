@@ -1,3 +1,5 @@
+package user;
+
 /**
  * This is an insecure implementation of the Account object and is up to the
  * instructors to choose the modifications that the students should make.

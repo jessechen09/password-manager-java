@@ -32,20 +32,16 @@ public class PasswordManagerModel {
         }
     }
 
-    protected void setUser(User user) {
+    void setUser(User user) {
         this.currentUser = user;
     }
 
-    protected boolean hasUser(String username) {
-        return userMap.containsKey(username);
+    Map<String, User> getUserMap() {
+        return userMap;
     }
 
-    protected User getUser(String username) {
-        if (this.hasUser(username)) return userMap.get(username);
-        return null;
+    User getCurrentUser() {
+        return currentUser;
     }
 
-    protected String getCurrentUserName() {
-        return currentUser.getAccount().getUserName();
-    }
 }

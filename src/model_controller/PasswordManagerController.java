@@ -14,12 +14,12 @@ public class PasswordManagerController {
     }
 
     public boolean hasUser(String username) {
-        return model.hasUser(username);
+        return model.getUserMap().containsKey(username);
     }
 
     public boolean isCorrectPassword(String username, String enteredPassword) {
-        if (!model.hasUser(username)) return false;
-        return model.getUser(username).getAccount().getPassword().equals(enteredPassword);
+        if (!hasUser(username)) return false;
+        return getUser(username).getAccount().getPassword().equals(enteredPassword);
     }
 
     public void setUser(User user) {
@@ -27,9 +27,11 @@ public class PasswordManagerController {
     }
 
     public User getUser(String username) {
-        return model.getUser(username);
+        return model.getUserMap().get(username);
     }
 
-    public String getCurrentUserName() {return model.getCurrentUserName(); }
+    public String getCurrentUserName() {
+        return model.getCurrentUser().getAccount().getUserName();
+    }
 
 }

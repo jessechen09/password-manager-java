@@ -32,16 +32,29 @@ public class PasswordManagerModel {
         }
     }
 
+    //=============== Methods ============================================
+
     void setUser(User user) {
         this.currentUser = user;
-    }
-
-    Map<String, User> getUserMap() {
-        return userMap;
     }
 
     User getCurrentUser() {
         return currentUser;
     }
+    String getCurrentUserName(){
+        return currentUser.getAccount().getUserName();
+    }
 
+    User getUser(String username) {
+        return userMap.get(username);
+    }
+
+    boolean hasUser(String username) {
+        return userMap.containsKey(username);
+    }
+
+    boolean isCorrectPassword(String username, String enteredPassword) {
+        if (!hasUser(username)) return false;
+        return getUser(username).getAccount().getPassword().equals(enteredPassword);
+    }
 }

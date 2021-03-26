@@ -1,5 +1,13 @@
 package model_controller;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import user.User;
 
 /**
@@ -8,30 +16,36 @@ import user.User;
 public class PasswordManagerController {
 
     private PasswordManagerModel model;
+    @FXML
+    private TextField usernameTextField;
+    @FXML
+    private PasswordField passwordTextField;
+    @FXML
+    private Button loginButton;
+    @FXML
+    private Label invalidLoginLabel;
 
-    public PasswordManagerController(PasswordManagerModel model) {
-        this.model = model;
+    public PasswordManagerController() {
+        model = new PasswordManagerModel();
     }
 
-    public boolean hasUser(String username) {
-        return model.getUserMap().containsKey(username);
+    //=============== Methods ============================================
+
+    public void loginButtonOnAction(ActionEvent event) {
+        String username = usernameTextField.getText();
+        String password = passwordTextField.getText();
+        if (model.hasUser(username) && model.isCorrectPassword(username, password)) {
+            model.setUser(model.getUser(username));
+            System.out.println("Logged in: " + model.getCurrentUserName());
+        } else {
+            invalidLoginLabel.setVisible(true);
+            invalidLoginLabel.setText("Invalid login. Please try again.");
+        }
     }
 
-    public boolean isCorrectPassword(String username, String enteredPassword) {
-        if (!hasUser(username)) return false;
-        return getUser(username).getAccount().getPassword().equals(enteredPassword);
-    }
-
-    public void setUser(User user) {
-        model.setUser(user);
-    }
-
-    public User getUser(String username) {
-        return model.getUserMap().get(username);
-    }
-
-    public String getCurrentUserName() {
-        return model.getCurrentUser().getAccount().getUserName();
+    public void textFieldOnEnter(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER)
+            loginButtonOnAction(new ActionEvent());
     }
 
 }

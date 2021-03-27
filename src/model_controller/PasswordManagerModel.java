@@ -41,9 +41,8 @@ public class PasswordManagerModel {
     User getCurrentUser() {
         return currentUser;
     }
-    String getCurrentUserName(){
-        return currentUser.getAccount().getUserName();
-    }
+
+    String getCurrentUserName() { return currentUser.getAccount().getUserName(); }
 
     User getUser(String username) {
         return userMap.get(username);

@@ -39,12 +39,8 @@ public class User {
         }
     }
 
-    public InternetAccount getInternetAccount(String domain) {
-        return internetAccounts.get(domain);
-    }
+    public InternetAccount getInternetAccount(String domain) { return internetAccounts.get(domain); }
 
-    public Account getAccount() {
-        return account;
-    }
+    public Account getAccount() { return account; }
 
 }

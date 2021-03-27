@@ -1,16 +1,16 @@
 package view;
 
 import javafx.application.Application;
-import model_controller.PasswordManagerController;
-import model_controller.PasswordManagerModel;
 
 /**
- *
+ * This class calls the PasswordManagerLauncher class. The main method is not in the launcher class because we did
+ * not setup a module path. Please
+ * <a href="https://stackoverflow.com/questions/55760343/error-javafx-runtime-components-are-missing-javafx-11-and-openjdk-11-and-ecli">click here</a>.
+ * @author jessechen
  */
+
 public class PasswordManager {
-
     public static void main(String[] args) {
-        Application.launch(PasswordManagerView.class);
+        Application.launch(PasswordManagerLauncher.class);
     }
-
 }

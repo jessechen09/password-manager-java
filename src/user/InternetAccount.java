@@ -1,12 +1,10 @@
 package user;
 
 /**
- * 
  * The InternetAccount object holds all the info for the account login and
  * passwords that the password manager will save.
- * 
- * @author jessechen
  *
+ * @author jessechen
  */
 public class InternetAccount extends Account {
 

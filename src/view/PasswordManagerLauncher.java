@@ -15,7 +15,7 @@ public class PasswordManagerLauncher extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource(".."+File.separator+"windowlogin"+ File.separator+"LoginView.fxml"))));
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource(".."+File.separator+ "view_login" + File.separator+"LoginView.fxml"))));
         stage.setResizable(false);
         stage.show();
     }

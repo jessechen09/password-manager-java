@@ -1,4 +1,4 @@
-package windowlogin;
+package view_login;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,7 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import windowmain.MainController;
+import view_main.MainController;
 import model.PasswordManagerModel;
 
 import java.io.File;
@@ -69,7 +69,7 @@ public class LoginController {
      */
     private void openMainWindow() {
         try {
-            String viewPath = ".." + File.separator + "windowmain" + File.separator + "MainView" + ".fxml";
+            String viewPath = ".." + File.separator + "view_main" + File.separator + "MainView" + ".fxml";
             FXMLLoader loader = new FXMLLoader(getClass().getResource(viewPath));
             Stage stage = new Stage();
             loader.setController(new MainController(model,stage));

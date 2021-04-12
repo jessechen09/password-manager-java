@@ -1,4 +1,4 @@
-package windowmain;
+package view_main;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

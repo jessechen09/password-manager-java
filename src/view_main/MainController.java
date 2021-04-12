@@ -3,6 +3,7 @@ package view_main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.PasswordManagerModel;
@@ -15,22 +16,24 @@ public class MainController {
     private Stage stage;
     private User user;
 
-    @FXML
-    private Button addNewPasswordButton;
+//    @FXML
+//    private Button addNewPasswordButton;
 
     @FXML
     private VBox passwordsVBox;
 
-    public MainController(PasswordManagerModel model, Stage stage) {
+    // FXMl file can only call a default constructor
+    public MainController() {
+    }
+
+    @FXML
+    public void initialize() {
+        System.out.println("pwbbox: " + passwordsVBox);
+    }
+    public void setModel(PasswordManagerModel model){
         this.model = model;
-        this.stage = stage;
-        this.user = model.getCurrentUser();
-        passwordsVBox.getChildren().addAll(new Label("here"));
-//        user.getInternetAccounts().forEach((domain, internetAccount)->
-//            passwordsVBox.getChildren().add(new Label(domain)));
     }
-
-    public void addNewPasswordButtonAction (ActionEvent event){
-
-    }
+//    public void addNewPasswordButtonAction(ActionEvent event) {
+//        System.out.println("Adding new password...");
+//    }
 }

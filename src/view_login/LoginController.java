@@ -39,6 +39,7 @@ public class LoginController {
 
     public LoginController() {
         model = new PasswordManagerModel();
+        System.out.println("New model created!");
     }
 
     //=============== Methods ============================================
@@ -58,6 +59,7 @@ public class LoginController {
 
     /**
      * Triggers an ActionEvent on the loginButton when user presses enter.
+     *
      * @param event
      */
     public void textFieldOnEnter(KeyEvent event) {
@@ -72,9 +74,10 @@ public class LoginController {
             String viewPath = ".." + File.separator + "view_main" + File.separator + "MainView" + ".fxml";
             FXMLLoader loader = new FXMLLoader(getClass().getResource(viewPath));
             Stage stage = new Stage();
-            loader.setController(new MainController(model,stage));
             Parent parent = loader.load();
-            stage.setTitle("My New Stage Title");
+            MainController mc = loader.getController();
+            mc.setModel(model);
+            stage.setTitle("Password Manager");
             stage.setScene(new Scene(parent));
             stage.setResizable(false);
             stage.show();

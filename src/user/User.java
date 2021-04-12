@@ -43,4 +43,6 @@ public class User {
 
     public Account getAccount() { return account; }
 
+    public HashMap<String, InternetAccount> getInternetAccounts() { return internetAccounts; }
+
 }

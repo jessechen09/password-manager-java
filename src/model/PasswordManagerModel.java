@@ -1,4 +1,4 @@
-package model_controller;
+package model;
 
 import user.Account;
 import user.User;
@@ -34,25 +34,25 @@ public class PasswordManagerModel {
 
     //=============== Methods ============================================
 
-    void setUser(User user) {
+    public void setUser(User user) {
         this.currentUser = user;
     }
 
-    User getCurrentUser() {
+    public User getCurrentUser() {
         return currentUser;
     }
 
-    String getCurrentUserName() { return currentUser.getAccount().getUserName(); }
+    public String getCurrentUserName() { return currentUser.getAccount().getUserName(); }
 
-    User getUser(String username) {
+    public User getUser(String username) {
         return userMap.get(username);
     }
 
-    boolean hasUser(String username) {
+    public boolean hasUser(String username) {
         return userMap.containsKey(username);
     }
 
-    boolean isCorrectPassword(String username, String enteredPassword) {
+    public boolean isCorrectPassword(String username, String enteredPassword) {
         if (!hasUser(username)) return false;
         return getUser(username).getAccount().getPassword().equals(enteredPassword);
     }

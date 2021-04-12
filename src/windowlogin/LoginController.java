@@ -1,10 +1,8 @@
-package model_controller;
+package windowlogin;
 
-import com.sun.tools.javac.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,6 +12,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import windowmain.MainController;
+import model.PasswordManagerModel;
 
 import java.io.File;
 import java.io.IOException;
@@ -56,21 +56,27 @@ public class LoginController {
         }
     }
 
+    /**
+     * Triggers an ActionEvent on the loginButton when user presses enter.
+     * @param event
+     */
     public void textFieldOnEnter(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) loginButtonOnAction(new ActionEvent());
     }
 
+    /**
+     * Opens the main password manager window.
+     */
     private void openMainWindow() {
-        Parent parent;
         try {
-            FXMLLoader loader =
-                    new FXMLLoader(getClass().getResource(".." + File.separator + "view" + File.separator + "MainView" +
-                            ".fxml"));
-            loader.setController(new MainController(model));
-            parent = loader.load();
+            String viewPath = ".." + File.separator + "windowmain" + File.separator + "MainView" + ".fxml";
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(viewPath));
             Stage stage = new Stage();
+            loader.setController(new MainController(model,stage));
+            Parent parent = loader.load();
             stage.setTitle("My New Stage Title");
             stage.setScene(new Scene(parent));
+            stage.setResizable(false);
             stage.show();
             loginButton.getScene().getWindow().hide();
         } catch (IOException e) {

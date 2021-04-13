@@ -37,6 +37,13 @@ public class LoginController {
 
     private PasswordManagerModel model;
 
+    private static final String LOGIN_BUTTON_IDLE_STYLE = "-fx-background-color: #C92D39;";
+    private static final String LOGIN_BUTTON_HOVER_STYLE = "-fx-background-color: #DA6770;";
+    //private static final String LOGIN_BUTTON_PRESSED_STYLE = "-fx-background-color: #E9A5AA;";
+
+    /**
+     * Constructor.
+     */
     public LoginController() {
         model = new PasswordManagerModel();
         System.out.println("New model created");
@@ -45,6 +52,7 @@ public class LoginController {
     //=============== Methods ============================================
 
     public void loginButtonOnAction() {
+        //loginButton.setStyle(LOGIN_BUTTON_PRESSED_STYLE);
         String username = usernameTextField.getText();
         String password = passwordTextField.getText();
         if (model.hasUser(username) && model.isCorrectPassword(username, password)) {
@@ -63,8 +71,16 @@ public class LoginController {
      * @param event
      */
     public void textFieldOnEnter(KeyEvent event) {
+        invalidLoginLabel.setVisible(false);
         if (event.getCode() == KeyCode.ENTER) loginButtonOnAction();
     }
+
+    /**
+     * These two methods modify the button's color as we move our mouse over it.
+     */
+    public void loginButtonOnEnter() { loginButton.setStyle(LOGIN_BUTTON_HOVER_STYLE); }
+
+    public void loginButtonOnExit() { loginButton.setStyle(LOGIN_BUTTON_IDLE_STYLE); }
 
     /**
      * Opens the main password manager window.

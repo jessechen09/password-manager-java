@@ -39,12 +39,12 @@ public class LoginController {
 
     public LoginController() {
         model = new PasswordManagerModel();
-        System.out.println("New model created!");
+        System.out.println("New model created");
     }
 
     //=============== Methods ============================================
 
-    public void loginButtonOnAction(ActionEvent event) {
+    public void loginButtonOnAction() {
         String username = usernameTextField.getText();
         String password = passwordTextField.getText();
         if (model.hasUser(username) && model.isCorrectPassword(username, password)) {
@@ -63,7 +63,7 @@ public class LoginController {
      * @param event
      */
     public void textFieldOnEnter(KeyEvent event) {
-        if (event.getCode() == KeyCode.ENTER) loginButtonOnAction(new ActionEvent());
+        if (event.getCode() == KeyCode.ENTER) loginButtonOnAction();
     }
 
     /**
@@ -76,7 +76,7 @@ public class LoginController {
             Stage stage = new Stage();
             Parent parent = loader.load();
             MainController mc = loader.getController();
-            mc.setModel(model);
+            mc.initialize(model);
             stage.setTitle("Password Manager");
             stage.setScene(new Scene(parent));
             stage.setResizable(false);

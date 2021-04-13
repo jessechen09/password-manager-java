@@ -1,4 +1,4 @@
-package view;
+package launcher;
 
 import javafx.application.Application;
 

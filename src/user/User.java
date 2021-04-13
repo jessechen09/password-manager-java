@@ -18,13 +18,13 @@ public class User {
     // take account as parameter because maybe we want to add more info to account in future
     public User(Account account) {
         this.account = account;
-        internetAccounts = new HashMap<String, InternetAccount>();
+        this.internetAccounts = new HashMap<String, InternetAccount>();
 
         // load in all of user's internet account info
         try {
             Scanner scanner =
                     new Scanner(new File("." + File.separator + "src" + File.separator + "data" + File.separator +
-                            "users.txt"));
+                            account.getUserName()+".txt"));
             String domain;
             String username;
             String password;

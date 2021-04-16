@@ -4,21 +4,31 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view_main.MainController">
-   <bottom>
-      <Button fx:id="addNewPasswordButton" alignment="CENTER" mnemonicParsing="false" onAction="#addNewPasswordButtonAction" prefHeight="27.0" prefWidth="160.5" style="-fx-background-color: #C92D39#C92D39 #C92D39#C92D39;" text="Add new password" textAlignment="CENTER" textFill="WHITE" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets bottom="5.0" top="5.0" />
-         </BorderPane.margin></Button>
-   </bottom>
    <center>
       <ScrollPane fx:id="scrollPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: ffffff;" BorderPane.alignment="CENTER">
          <content>
-            <VBox fx:id="passwordsVBox" alignment="CENTER" prefHeight="361.0" prefWidth="598.0" style="-fx-background-color: ffffff;" />
-
+            <VBox fx:id="passwordsVBox" alignment="TOP_CENTER" prefHeight="59.0" prefWidth="598.0" style="-fx-background-color: ffffff;" />
          </content>
       </ScrollPane>
    </center>
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="40.0" prefWidth="160.5" spacing="154.5" BorderPane.alignment="CENTER">
+         <children>
+            <Button disable="true" mnemonicParsing="false" text="Log out" visible="false" />
+            <Button fx:id="addNewPasswordButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#addNewPasswordButtonAction" prefHeight="27.0" prefWidth="160.5" style="-fx-background-color: #C92D39;" text="Add new password" textAlignment="CENTER" textFill="WHITE" />
+            <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logoutButtonAction" style="-fx-background-color: #C92D39;" text="Log out" textFill="WHITE">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Button>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </HBox>
+   </bottom>
 </BorderPane>

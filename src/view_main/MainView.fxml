@@ -9,14 +9,14 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view_main.MainController">
    <center>
-      <ScrollPane fx:id="scrollPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: ffffff;" BorderPane.alignment="CENTER">
+      <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: ffffff;" BorderPane.alignment="CENTER">
          <content>
             <VBox fx:id="passwordsVBox" alignment="TOP_CENTER" prefHeight="59.0" prefWidth="598.0" style="-fx-background-color: ffffff;" />
          </content>
       </ScrollPane>
    </center>
    <bottom>
-      <HBox alignment="CENTER" prefHeight="40.0" prefWidth="160.5" spacing="154.5" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" prefHeight="40.0" prefWidth="160.5" spacing="155.0" style="-fx-background-color: #eaeaea;" BorderPane.alignment="CENTER">
          <children>
             <Button disable="true" mnemonicParsing="false" text="Log out" visible="false" />
             <Button fx:id="addNewPasswordButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#addNewPasswordButtonAction" prefHeight="27.0" prefWidth="160.5" style="-fx-background-color: #C92D39;" text="Add new password" textAlignment="CENTER" textFill="WHITE" />

@@ -14,19 +14,20 @@
    <bottom>
       <AnchorPane prefHeight="400.0" prefWidth="630.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
          <children>
-            <VBox alignment="CENTER" layoutX="70.0" layoutY="38.0" prefWidth="160.0" spacing="30.0">
+            <VBox alignment="CENTER" layoutX="70.0" layoutY="32.0" prefHeight="243.0" prefWidth="160.0" spacing="30.0">
                <children>
-                  <TextField fx:id="usernameTextField" onKeyPressed="#textFieldOnEnter" prefWidth="160.0" promptText="Username" />
-                  <PasswordField fx:id="passwordTextField" onKeyPressed="#textFieldOnEnter" promptText="Password" />
+                  <TextField fx:id="usernameTextField" onKeyPressed="#loginTextFieldOnEnter" prefWidth="160.0" promptText="Username" />
+                  <PasswordField fx:id="passwordTextField" onKeyPressed="#loginTextFieldOnEnter" promptText="Password" />
                   <Button fx:id="loginButton" mnemonicParsing="false" onAction="#loginButtonOnAction" onMouseEntered="#loginButtonOnEnter" onMouseExited="#loginButtonOnExit" prefHeight="27.0" prefWidth="160.5" style="-fx-background-color: #C92D39;" text="Log in" textFill="WHITE" />
-                  <Label fx:id="invalidLoginLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="276.0" style="-fx-background-color: #FAE4ED;" textAlignment="CENTER" textFill="#a5155f" visible="false" />
+                  <Label fx:id="invalidLoginLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="160.0" style="-fx-background-color: #FAE4ED;" textAlignment="CENTER" textFill="#a5155f" visible="false" />
+                  <Button fx:id="registerButton" mnemonicParsing="false" onAction="#registerButtonAction" onMouseEntered="#registerButtonOnEnter" onMouseExited="#registerButtonOnExit" style="-fx-background-color: #ffffff;" text="New user? Register" />
                </children>
             </VBox>
          </children>
       </AnchorPane>
    </bottom>
    <top>
-      <AnchorPane prefHeight="125.0" prefWidth="300.0" style="-fx-background-color: #001D4C#001D4C;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="125.0" prefWidth="300.0" style="-fx-background-color: #001D4C;" BorderPane.alignment="CENTER">
          <children>
             <VBox alignment="CENTER" prefHeight="121.0" prefWidth="300.0" spacing="10.0">
                <children>

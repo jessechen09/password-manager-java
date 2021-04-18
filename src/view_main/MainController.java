@@ -1,20 +1,19 @@
 package view_main;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import launcher.PasswordManager;
 import launcher.PasswordManagerLauncher;
 import model.PasswordManagerModel;
-import user.InternetAccount;
 import user.User;
 
-import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -24,7 +23,7 @@ public class MainController {
     private PasswordManagerModel model;
     private Stage stage;
     private User user;
-    private Map<String,HBox> hboxMap;
+    private Map<String, HBox> hboxMap;
 
     @FXML
     private Button addNewPasswordButton;
@@ -52,15 +51,15 @@ public class MainController {
         hboxMap = new HashMap<String, HBox>();
         for (String domain : user.getInternetAccounts().keySet()) {
             System.out.println(domain);
-            HBox userHBox = FXMLLoader.load(getClass().getResource("UserHBoxView.fxml"));
-            passwordsVBox.getChildren().add(userHBox);
-            hboxMap.put(domain,userHBox);
+            HBox hbox = FXMLLoader.load(getClass().getResource("UserHBoxView.fxml"));
+            passwordsVBox.getChildren().add(hbox);
+            hboxMap.put(domain, hbox);
+            ((Label) hbox.getChildren().get(0)).setText(domain);
         }
     }
 
     public void addNewPasswordButtonAction() {
         System.out.println("Adding new password...");
-
         //launch addNewPasswordWindow
     }
 

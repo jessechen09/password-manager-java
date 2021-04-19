@@ -15,13 +15,13 @@ import java.util.*;
 public class PasswordManagerModel {
     private Map<String, User> userMap;
     private User currentUser; // the current user, i.e. whoever logged in
-    private String dataDirectory;
     private String usersDirectory;
+
+    public static final String DATA_DIRECTORY = "." + File.separator + "src" + File.separator + "data" + File.separator;
 
     public PasswordManagerModel() {
         userMap = new HashMap<String, User>();
-        dataDirectory = "." + File.separator + "src" + File.separator + "data" + File.separator;
-        usersDirectory = dataDirectory + "users.txt";
+        usersDirectory = DATA_DIRECTORY + "users.txt";
         try {
             Scanner scanner = new Scanner(new File(usersDirectory));
             String username;
@@ -63,14 +63,13 @@ public class PasswordManagerModel {
 
     public void addUser(String username, String password) throws IOException {
         // add user to database, i.e. "users.txt"
-        System.out.println(usersDirectory);
         File usersFile = new File(usersDirectory);
         FileWriter writer = new FileWriter(usersFile, true);
         writer.write("\n" + username + " " + password);
         writer.close();
 
         // create username.txt file
-        File userFile = new File(dataDirectory + username + ".txt");
+        File userFile = new File(DATA_DIRECTORY + username + ".txt");
         userFile.createNewFile();
 
         // add user to userMap

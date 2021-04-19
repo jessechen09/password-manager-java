@@ -1,4 +1,4 @@
-package view_register;
+package view_addpass;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -10,11 +10,14 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.Colors;
-import model.PasswordManagerModel;
+import user.User;
 
 import java.io.IOException;
 
-public class RegisterController {
+public class AddPassController {
+
+    @FXML
+    private TextField domainTextField;
 
     @FXML
     private TextField usernameTextField;
@@ -31,41 +34,33 @@ public class RegisterController {
     @FXML
     private Button finishButton;
 
-    private PasswordManagerModel model;
+    private User user;
     private BorderPane parentBorderPane;
-    private Stage regStage;
-    private static final int MIN_PASSWORD_LENGTH = 6;
+    private Stage addPassStage;
 
-    public void initialize(PasswordManagerModel model, BorderPane parentBorderPane, Stage regStage) {
-        this.model = model;
+    public void initialize(User user, BorderPane parentBorderPane, Stage addPassStage){
+        this.user = user;
         this.parentBorderPane = parentBorderPane;
-        this.regStage = regStage;
+        this.addPassStage = addPassStage;
     }
 
     public void finishButtonOnAction() throws IOException {
+        String domain = domainTextField.getText();
         String username = usernameTextField.getText();
         String password1 = passwordField1.getText();
         String password2 = passwordField2.getText();
 
-        // check if username is new
-        if (model.hasUser(username)) {
-            invalidInfoLabel.setText("User exists");
-            invalidInfoLabel.setVisible(true);
-        } // check if two passwords match
-        else if (!password1.equals(password2)) {
+        if (!password1.equals(password2)) {
             invalidInfoLabel.setText("Passwords do not match");
             invalidInfoLabel.setVisible(true);
-        } else if (password1.length() < MIN_PASSWORD_LENGTH) {
-            invalidInfoLabel.setText("Min password length: " + MIN_PASSWORD_LENGTH);
-            invalidInfoLabel.setVisible(true);
         } else {
-            model.addUser(username, password1);
+            user.addInternetAccount(domain, username, password1);
             parentBorderPane.setDisable(false);
-            regStage.close();
+            addPassStage.close();
         }
     }
 
-    public void registerTextFieldOnEnter(KeyEvent event) throws IOException {
+    public void textFieldOnEnter(KeyEvent event) throws IOException {
         invalidInfoLabel.setVisible(false);
         if (event.getCode() == KeyCode.ENTER) finishButtonOnAction();
     }
@@ -77,5 +72,4 @@ public class RegisterController {
     public void finishButtonOnEnter() { finishButton.setStyle(Colors.setBackgroundColor(Colors.LIGHT_RED)); }
 
     public void finishButtonOnExit() { finishButton.setStyle(Colors.setBackgroundColor(Colors.MAIN_RED)); }
-
 }

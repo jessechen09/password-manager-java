@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view_addpass.AddPassController">
+   <bottom>
+      <AnchorPane prefHeight="400.0" prefWidth="630.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
+         <children>
+            <VBox alignment="CENTER" layoutX="70.0" layoutY="109.0" prefHeight="275.0" prefWidth="160.0" spacing="20.0">
+               <children>
+                  <TextField fx:id="domainTextField" onKeyPressed="#textFieldOnEnter" prefWidth="160.0" promptText="Domain" />
+                  <TextField fx:id="usernameTextField" onKeyPressed="#textFieldOnEnter" prefWidth="160.0" promptText="Username" />
+                  <PasswordField fx:id="passwordField1" onKeyPressed="#textFieldOnEnter" promptText="Password" />
+                  <PasswordField fx:id="passwordField2" onKeyPressed="#textFieldOnEnter" promptText="Retype password" />
+                  <Button fx:id="finishButton" mnemonicParsing="false" onAction="#finishButtonOnAction" onMouseEntered="#finishButtonOnEnter" onMouseExited="#finishButtonOnExit" prefHeight="27.0" prefWidth="160.5" style="-fx-background-color: #C92D39;" text="Finish" textFill="WHITE" />
+                  <Label fx:id="invalidInfoLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="160.0" style="-fx-background-color: #FAE4ED;" textAlignment="CENTER" textFill="#a5155f" visible="false" />
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </bottom>
+   <top>
+      <AnchorPane prefHeight="125.0" prefWidth="300.0" style="-fx-background-color: #001D4C;" BorderPane.alignment="CENTER">
+         <children>
+            <VBox alignment="CENTER" prefHeight="121.0" prefWidth="300.0" spacing="10.0">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="ADD PASSWORD">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Jesse Chen" textAlignment="CENTER" />
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="University of Arizona" textAlignment="CENTER" />
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </top>
+</BorderPane>

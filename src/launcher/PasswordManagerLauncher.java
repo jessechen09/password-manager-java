@@ -17,14 +17,12 @@ import java.io.File;
  * @author jessechen
  */
 public class PasswordManagerLauncher extends Application {
-
     @Override
     public void start(Stage loginStage) throws Exception {
         String loginDirectory = ".." + File.separator + "view_login" + File.separator + "LoginView.fxml";
         FXMLLoader loader = new FXMLLoader((getClass().getResource(loginDirectory)));
         Parent parent = loader.load();
         LoginController loginController = loader.getController();
-        loginController.initialize(loginStage);
         loginStage.setScene(new Scene(parent));
         loginStage.setResizable(false);
         loginStage.show();

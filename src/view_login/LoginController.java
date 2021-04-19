@@ -10,6 +10,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.Colors;
 import view_main.MainController;
@@ -39,14 +40,14 @@ public class LoginController {
     @FXML
     private Button registerButton;
 
+    @FXML
+    private BorderPane borderPane;
+
     private PasswordManagerModel model;
 
-    private Stage loginStage;
-
-    public void initialize(Stage loginStage) {
+    public LoginController() {
         model = new PasswordManagerModel();
         System.out.println("New model created");
-        this.loginStage = loginStage;
     }
 
     //=============== Login button =====================================================================================
@@ -123,12 +124,13 @@ public class LoginController {
             Stage regStage = new Stage();
             Parent parent = loader.load();
             RegisterController regController = loader.getController();
-            regController.initialize(model, loginStage, regStage);
+            regController.initialize(model, borderPane, regStage);
             regStage.setTitle("Register");
             regStage.setScene(new Scene(parent));
             regStage.setResizable(false);
             regStage.show();
-            registerButton.getScene().getWindow().hide();
+            borderPane.setDisable(true);
+//            registerButton.getScene().getWindow().hide();
         } catch (IOException e) {
             e.printStackTrace();
         }

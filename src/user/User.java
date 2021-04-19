@@ -1,7 +1,11 @@
 package user;
 
+import model.PasswordManagerModel;
+
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -22,9 +26,8 @@ public class User {
 
         // load in all of user's internet account info
         try {
-            Scanner scanner =
-                    new Scanner(new File("." + File.separator + "src" + File.separator + "data" + File.separator +
-                            account.getUserName()+".txt"));
+            Scanner scanner = new Scanner(new File(PasswordManagerModel.DATA_DIRECTORY + account.getUserName() +
+                    ".txt"));
             String domain;
             String username;
             String password;
@@ -44,5 +47,11 @@ public class User {
     public Account getAccount() { return account; }
 
     public HashMap<String, InternetAccount> getInternetAccounts() { return internetAccounts; }
-
+    public void addInternetAccount(String domain, String username, String password) throws IOException {
+        File file = new File(PasswordManagerModel.DATA_DIRECTORY + account.getUserName()+".txt");
+        FileWriter writer = new FileWriter(file,true);
+        writer.write("\n"+domain+" "+username+" "+password);
+        writer.close();
+        internetAccounts.put(domain,new InternetAccount(domain,username,password));
+    }
 }

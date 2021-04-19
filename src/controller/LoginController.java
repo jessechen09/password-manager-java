@@ -1,4 +1,4 @@
-package view_login;
+package controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,9 +13,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.Colors;
-import view_main.MainController;
 import model.PasswordManagerModel;
-import view_register.RegisterController;
 
 import java.io.File;
 import java.io.IOException;
@@ -88,7 +86,7 @@ public class LoginController {
      */
     private void openMainWindow() {
         try {
-            String viewPath = ".." + File.separator + "view_main" + File.separator + "MainView" + ".fxml";
+            String viewPath = PasswordManagerModel.VIEW_DIRECTORY + "MainView.fxml";
             FXMLLoader loader = new FXMLLoader(getClass().getResource(viewPath));
             Stage mainStage = new Stage();
             Parent parent = loader.load();
@@ -119,7 +117,7 @@ public class LoginController {
 
     private void openRegisterWindow() {
         try {
-            String viewPath = ".." + File.separator + "view_register" + File.separator + "RegisterView" + ".fxml";
+            String viewPath = PasswordManagerModel.VIEW_DIRECTORY + "RegisterView.fxml";
             FXMLLoader loader = new FXMLLoader(getClass().getResource(viewPath));
             Stage regStage = new Stage();
             Parent parent = loader.load();
@@ -130,7 +128,7 @@ public class LoginController {
             regStage.setResizable(false);
             regStage.show();
             borderPane.setDisable(true);
-//            registerButton.getScene().getWindow().hide();
+            //            registerButton.getScene().getWindow().hide();
         } catch (IOException e) {
             e.printStackTrace();
         }

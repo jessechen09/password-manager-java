@@ -47,11 +47,12 @@ public class User {
     public Account getAccount() { return account; }
 
     public HashMap<String, InternetAccount> getInternetAccounts() { return internetAccounts; }
+
     public void addInternetAccount(String domain, String username, String password) throws IOException {
-        File file = new File(PasswordManagerModel.DATA_DIRECTORY + account.getUserName()+".txt");
-        FileWriter writer = new FileWriter(file,true);
-        writer.write("\n"+domain+" "+username+" "+password);
+        File file = new File(PasswordManagerModel.DATA_DIRECTORY + account.getUserName() + ".txt");
+        FileWriter writer = new FileWriter(file, true);
+        writer.write("\n" + domain + " " + username + " " + password);
         writer.close();
-        internetAccounts.put(domain,new InternetAccount(domain,username,password));
+        internetAccounts.put(domain, new InternetAccount(domain, username, password));
     }
 }

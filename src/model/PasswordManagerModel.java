@@ -17,10 +17,17 @@ public class PasswordManagerModel {
     private User currentUser; // the current user, i.e. whoever logged in
     private String usersDirectory;
 
-    public static final String DATA_DIRECTORY = "." + File.separator + "src" + File.separator + "data" + File.separator;
+    public static final int MIN_PASSWORD_LENGTH = 6;
+    public static final String MAIN_DIRECTORY = ".." + File.separator;
+    public static final String SRC_DIRECTORY = "src" + File.separator;
+    public static final String VIEW_DIRECTORY = MAIN_DIRECTORY + "view" + File.separator;
+    public static final String DATA_DIRECTORY = SRC_DIRECTORY + "data" + File.separator;
+    public static final String CONTROLLER_DIRECTORY = MAIN_DIRECTORY + "controller" + File.separator;
 
     public PasswordManagerModel() {
         userMap = new HashMap<String, User>();
+        // The following does not work for some reason:
+        // DATA_DIRECTORY + "users.txt"
         usersDirectory = DATA_DIRECTORY + "users.txt";
         try {
             Scanner scanner = new Scanner(new File(usersDirectory));

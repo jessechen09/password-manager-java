@@ -1,6 +1,5 @@
-package view_main;
+package controller;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,8 +13,6 @@ import javafx.stage.Stage;
 import launcher.PasswordManagerLauncher;
 import model.PasswordManagerModel;
 import user.User;
-import view_addpass.AddPassController;
-import view_register.RegisterController;
 
 import java.io.File;
 import java.io.IOException;
@@ -57,7 +54,9 @@ public class MainController {
         hboxMap = new HashMap<String, HBox>();
         for (String domain : user.getInternetAccounts().keySet()) {
             System.out.println(domain);
-            HBox hbox = FXMLLoader.load(getClass().getResource("UserHBoxView.fxml"));
+            HBox hbox =
+                    FXMLLoader.load(getClass().getResource(PasswordManagerModel.VIEW_DIRECTORY + "UserHBoxView" +
+                            ".fxml"));
             passwordsVBox.getChildren().add(hbox);
             hboxMap.put(domain, hbox);
             ((Label) hbox.getChildren().get(0)).setText(domain);
@@ -67,7 +66,7 @@ public class MainController {
     public void addNewPasswordButtonAction() {
         System.out.println("Adding new password...");
         try {
-            String viewPath = ".." + File.separator + "view_addpass" + File.separator + "AddPassView" + ".fxml";
+            String viewPath = PasswordManagerModel.VIEW_DIRECTORY + "AddPassView.fxml";
             FXMLLoader loader = new FXMLLoader(getClass().getResource(viewPath));
             Stage addPassStage = new Stage();
             Parent parent = loader.load();

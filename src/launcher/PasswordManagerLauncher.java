@@ -19,9 +19,6 @@ public class PasswordManagerLauncher extends Application {
 
     @Override
     public void start(Stage loginStage) throws Exception {
-        // Don't know why the following does not work:
-        // PasswordManagerModel.VIEW_DIRECTORY+ "LoginView.fxml";
-
         String loginDirectory = PasswordManagerModel.VIEW_DIRECTORY + "LoginView.fxml";
         FXMLLoader loader = new FXMLLoader((getClass().getResource(loginDirectory)));
         Parent parent = loader.load();

@@ -68,18 +68,22 @@ public class PasswordManagerModel {
         return getUser(username).getAccount().getPassword().equals(enteredPassword);
     }
 
-    public void addUser(String username, String password) throws IOException {
-        // add user to database, i.e. "users.txt"
-        File usersFile = new File(usersDirectory);
-        FileWriter writer = new FileWriter(usersFile, true);
-        writer.write("\n" + username + " " + password);
-        writer.close();
+    public void addUser(String username, String password) {
+        try {  // add user to database, i.e. "users.txt"
+            File usersFile = new File(usersDirectory);
+            FileWriter writer = new FileWriter(usersFile, true);
+            writer.write("\n" + username + " " + password);
+            writer.close();
 
-        // create username.txt file
-        File userFile = new File(DATA_DIRECTORY + username + ".txt");
-        userFile.createNewFile();
+            // create username.txt file
+            File userFile = new File(DATA_DIRECTORY + username + ".txt");
+            userFile.createNewFile();
 
-        // add user to userMap
-        userMap.put(username, new User(new Account(username, password)));
+            // add user to userMap
+            userMap.put(username, new User(new Account(username, password)));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }

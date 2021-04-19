@@ -16,12 +16,12 @@
          <children>
             <VBox alignment="CENTER" layoutX="70.0" layoutY="109.0" prefHeight="275.0" prefWidth="160.0" spacing="20.0">
                <children>
-                  <TextField fx:id="domainTextField" onKeyPressed="#textFieldOnEnter" prefWidth="160.0" promptText="Domain" />
-                  <TextField fx:id="usernameTextField" onKeyPressed="#textFieldOnEnter" prefWidth="160.0" promptText="Username" />
-                  <PasswordField fx:id="passwordField1" onKeyPressed="#textFieldOnEnter" promptText="Password" />
-                  <PasswordField fx:id="passwordField2" onKeyPressed="#textFieldOnEnter" promptText="Retype password" />
-                  <Button fx:id="finishButton" mnemonicParsing="false" onAction="#finishButtonOnAction" onMouseEntered="#finishButtonOnEnter" onMouseExited="#finishButtonOnExit" prefHeight="27.0" prefWidth="160.5" style="-fx-background-color: #C92D39;" text="Finish" textFill="WHITE" />
-                  <Label fx:id="invalidInfoLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="160.0" style="-fx-background-color: #FAE4ED;" textAlignment="CENTER" textFill="#a5155f" visible="false" />
+                  <TextField fx:id="domainTextField" onKeyPressed="#fieldOnEnter" prefWidth="160.0" promptText="Domain" />
+                  <TextField fx:id="usernameTextField" onKeyPressed="#fieldOnEnter" prefWidth="160.0" promptText="Username" />
+                  <PasswordField fx:id="passwordField1" onKeyPressed="#fieldOnEnter" promptText="Password" />
+                  <PasswordField fx:id="passwordField2" onKeyPressed="#fieldOnEnter" promptText="Retype password" />
+                  <Button fx:id="mainButton" mnemonicParsing="false" onAction="#mainButtonOnAction" onMouseEntered="#mainButtonOnEnter" onMouseExited="#mainButtonOnExit" prefHeight="27.0" prefWidth="160.5" style="-fx-background-color: #C92D39;" text="Finish" textFill="WHITE" />
+                  <Label fx:id="invalidLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="160.0" style="-fx-background-color: #FAE4ED;" textAlignment="CENTER" textFill="#a5155f" visible="false" />
                </children>
             </VBox>
          </children>

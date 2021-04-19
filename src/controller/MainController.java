@@ -54,9 +54,8 @@ public class MainController {
         hboxMap = new HashMap<String, HBox>();
         for (String domain : user.getInternetAccounts().keySet()) {
             System.out.println(domain);
-            HBox hbox =
-                    FXMLLoader.load(getClass().getResource(PasswordManagerModel.VIEW_DIRECTORY + "UserHBoxView" +
-                            ".fxml"));
+            String hboxViewDir = PasswordManagerModel.VIEW_DIRECTORY + "UserHBoxView.fxml";
+            HBox hbox = FXMLLoader.load(getClass().getResource(hboxViewDir));
             passwordsVBox.getChildren().add(hbox);
             hboxMap.put(domain, hbox);
             ((Label) hbox.getChildren().get(0)).setText(domain);

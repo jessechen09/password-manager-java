@@ -6,7 +6,7 @@ DISCLAIMER: This is not a true password manager and has ZERO security features. 
 
 This is my first personal project, and I think it's a good starting point for those who are trying to find projects to work on. By working on this project, you also practice reading and understanding someone else's code, which may not necessarily be well written! Hopefully, mine is okay.
 
-Some things you can do include, but are not limited to:
+Some task you can work on include, but are not limited to:
 
 | Estimated difficulty | Task |
 | :------------------- | :--- |
@@ -23,6 +23,10 @@ Some things you can do include, but are not limited to:
 |Hard                  |Add animations to UI.|
 |Hard                  |Instead of using .txt files, use a data base to store all the info.|
 |Super Hard            |Implement security features.|
+
+## How it works
+
+This project uses the MVC software design pattern. The FXML files are the views, which are controlled by separate controller classes. There is one main model that stores all the user and account information. The "database" is simulated with .txt files, which the model reads when a user logs in or writes to when new users or internt accounts are added.
 
 # Windows
 
@@ -59,3 +63,5 @@ Everything is fine now.
 <p align="center">
 <img src="https://github.com/jessechen09/password-manager-java/blob/master/screenshots/addPass.png?raw=true" width=50%>
 </p>
+
+## The End

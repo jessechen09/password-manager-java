@@ -12,30 +12,32 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import launcher.PasswordManagerLauncher;
 import model.PasswordManagerModel;
+import user.InternetAccount;
 import user.User;
-
-import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+
+/**
+ * Controls the main password manager window.
+ *
+ * @author Jesse Chen
+ */
 
 public class MainController {
-    private PasswordManagerModel model;
-    private Stage stage;
-    private User user;
-    private Map<String, HBox> hboxMap;
+    Stage addPassStage;
+    User user;
 
     @FXML
-    private Button addNewPasswordButton;
+    Button addNewPasswordButton;
 
     @FXML
-    private VBox passwordsVBox;
+    VBox passwordsVBox;
 
     @FXML
     private Button logoutButton;
 
     @FXML
-    private BorderPane borderPane;
+    BorderPane borderPane;
+
 
     /**
      * FXMl file can only call a default constructor, but we can't do much inside it, so let's just
@@ -45,32 +47,28 @@ public class MainController {
      *
      * @param model
      */
-    public void initialize(PasswordManagerModel model) throws IOException {
+    public void initialize(PasswordManagerModel model) {
         System.out.println("Model transferred from login window to main window");
         System.out.println("This account has these domains stored:");
 
-        this.model = model;
         this.user = model.getCurrentUser();
-        hboxMap = new HashMap<String, HBox>();
-        for (String domain : user.getInternetAccounts().keySet()) {
-            System.out.println(domain);
-            String hboxViewDir = PasswordManagerModel.VIEW_DIRECTORY + "UserHBoxView.fxml";
-            HBox hbox = FXMLLoader.load(getClass().getResource(hboxViewDir));
-            passwordsVBox.getChildren().add(hbox);
-            hboxMap.put(domain, hbox);
-            ((Label) hbox.getChildren().get(0)).setText(domain);
+        for (InternetAccount internetAccount : user.getInternetAccounts().values()) {
+            addPasswordHBox(internetAccount);
         }
     }
 
+    /**
+     * Opens the window for adding new passwords.
+     */
     public void addNewPasswordButtonAction() {
         System.out.println("Adding new password...");
         try {
             String viewPath = PasswordManagerModel.VIEW_DIRECTORY + "AddPassView.fxml";
             FXMLLoader loader = new FXMLLoader(getClass().getResource(viewPath));
-            Stage addPassStage = new Stage();
+            addPassStage = new Stage();
             Parent parent = loader.load();
             AddPassController addPassController = loader.getController();
-            addPassController.initialize(user, borderPane, addPassStage);
+            addPassController.initialize(this);
             addPassStage.setTitle("Add Password");
             addPassStage.setScene(new Scene(parent));
             addPassStage.setResizable(false);
@@ -79,12 +77,37 @@ public class MainController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //launch addNewPasswordWindow
     }
 
+    /**
+     * Logs current user out and returns to login window.
+     *
+     * @throws Exception
+     */
     public void logoutButtonAction() throws Exception {
         logoutButton.getScene().getWindow().hide();
         PasswordManagerLauncher pml = new PasswordManagerLauncher();
         pml.start(new Stage());
+    }
+
+    /**
+     * Adds an HBox that displays the domain, username button, and password button.
+     *
+     * @param internetAccount
+     */
+    void addPasswordHBox(InternetAccount internetAccount) {
+        try {
+            String hboxViewDir = PasswordManagerModel.VIEW_DIRECTORY + "UserHBoxView.fxml";
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(hboxViewDir));
+            HBox hbox = loader.load();
+            UserHBoxController userHBoxController = loader.getController();
+            userHBoxController.initialize(internetAccount);
+            passwordsVBox.getChildren().add(hbox);
+            ((Label) hbox.getChildren().get(0)).setText(internetAccount.getDomain());
+            HBox subHBox = (HBox) hbox.getChildren().get(1);
+            ((Button) (subHBox.getChildren().get(0))).setText(internetAccount.getUserName());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

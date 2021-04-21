@@ -13,8 +13,9 @@ import java.io.File;
 /**
  * This class launches the login page and essentially starts the password manager app.
  *
- * @author jessechen
+ * @author Jesse Chen
  */
+
 public class PasswordManagerLauncher extends Application {
 
     @Override

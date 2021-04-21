@@ -7,11 +7,15 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
 import model.Colors;
 
-public abstract class SmallWindow {
+/**
+ * Abstract class for the small windows, which is basically all windows except the main window.
+ *
+ * @author Jesse Chen
+ */
+
+public abstract class SmallWindowController {
 
     @FXML
     protected Button mainButton;
@@ -25,9 +29,6 @@ public abstract class SmallWindow {
     @FXML
     protected Label invalidLabel;
 
-    protected BorderPane parentBorderPane;
-    protected Stage currentStage;
-
     public abstract void mainButtonOnAction();
 
     /**
@@ -38,6 +39,11 @@ public abstract class SmallWindow {
 
     public void mainButtonOnExit() { mainButton.setStyle(Colors.setBackgroundColor(Colors.MAIN_RED)); }
 
+    /**
+     * Clicks on main button when user presses return.
+     *
+     * @param event
+     */
     public void fieldOnEnter(KeyEvent event) {
         invalidLabel.setVisible(false);
         if (event.getCode() == KeyCode.ENTER) mainButtonOnAction();

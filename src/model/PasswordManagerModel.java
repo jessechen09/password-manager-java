@@ -10,8 +10,11 @@ import java.io.IOException;
 import java.util.*;
 
 /**
- * @author jessechen
+ * This class is the model and stores all the information by reading the .txt files. This class also accepts new users.
+ *
+ * @author Jesse Chen
  */
+
 public class PasswordManagerModel {
     private Map<String, User> userMap;
     private User currentUser; // the current user, i.e. whoever logged in
@@ -22,7 +25,6 @@ public class PasswordManagerModel {
     public static final String SRC_DIRECTORY = "src" + File.separator;
     public static final String VIEW_DIRECTORY = MAIN_DIRECTORY + "view" + File.separator;
     public static final String DATA_DIRECTORY = SRC_DIRECTORY + "data" + File.separator;
-    public static final String CONTROLLER_DIRECTORY = MAIN_DIRECTORY + "controller" + File.separator;
 
     public PasswordManagerModel() {
         userMap = new HashMap<String, User>();
@@ -45,29 +47,59 @@ public class PasswordManagerModel {
 
     //=============== Methods ==========================================================================================
 
+    /**
+     * Sets the current user when you login.
+     *
+     * @param user
+     */
     public void setUser(User user) {
         this.currentUser = user;
     }
 
+    /**
+     * @return Returns the current user, i.e. whoever is logged in.
+     */
     public User getCurrentUser() {
         return currentUser;
     }
 
+    /**
+     * @return Returns the current user's username.
+     */
     public String getCurrentUserName() { return currentUser.getAccount().getUserName(); }
 
+    /**
+     * @param username
+     * @return Returns the User that corresponds the input username.
+     */
     public User getUser(String username) {
         return userMap.get(username);
     }
 
+    /**
+     * @param username
+     * @return Returns true if there is a User with the input username in the database, false otherwise.
+     */
     public boolean hasUser(String username) {
         return userMap.containsKey(username);
     }
 
+    /**
+     * @param username
+     * @param enteredPassword
+     * @return Returns true if the input password matches the database password of the input username, false otherwise.
+     */
     public boolean isCorrectPassword(String username, String enteredPassword) {
         if (!hasUser(username)) return false;
         return getUser(username).getAccount().getPassword().equals(enteredPassword);
     }
 
+    /**
+     * Adds new user to the map of users
+     *
+     * @param username
+     * @param password
+     */
     public void addUser(String username, String password) {
         try {  // add user to database, i.e. "users.txt"
             File usersFile = new File(usersDirectory);

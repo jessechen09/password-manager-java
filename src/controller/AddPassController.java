@@ -1,13 +1,16 @@
 package controller;
+/**
+ * Controls the view that allows adding a new password.
+ *
+ * @author Jesse Chen
+ */
 
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
-import user.User;
+import user.InternetAccount;
 
-public class AddPassController extends SmallWindow {
+public class AddPassController extends SmallWindowController {
 
     @FXML
     private TextField domainTextField;
@@ -15,14 +18,22 @@ public class AddPassController extends SmallWindow {
     @FXML
     private PasswordField passwordField2;
 
-    private User user;
+    private MainController parentController;
 
-    public void initialize(User user, BorderPane parentBorderPane, Stage addPassStage) {
-        this.user = user;
-        super.parentBorderPane = parentBorderPane;
-        super.currentStage = addPassStage;
+    /**
+     * Replicates a constructor because FXML only allows default constructors.
+     *
+     * @param parentController
+     */
+    public void initialize(MainController parentController) {
+        this.parentController = parentController;
     }
 
+
+    /**
+     * Adds new InternetAccount to current user and displays new password HBox in main window when the finish button
+     * is pressed.
+     */
     @Override
     public void mainButtonOnAction() {
         String domain = domainTextField.getText();
@@ -34,9 +45,11 @@ public class AddPassController extends SmallWindow {
             invalidLabel.setText("Passwords do not match");
             invalidLabel.setVisible(true);
         } else {
-            user.addInternetAccount(domain, username, password1);
-            parentBorderPane.setDisable(false);
-            currentStage.close();
+            InternetAccount newInternetAccount = new InternetAccount(domain, username, password1);
+            parentController.user.addInternetAccount(newInternetAccount);
+            parentController.borderPane.setDisable(false);
+            parentController.addPasswordHBox(newInternetAccount);
+            parentController.addPassStage.close();
         }
     }
 }

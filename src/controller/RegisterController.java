@@ -2,30 +2,36 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
-import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
 import model.PasswordManagerModel;
 
-public class RegisterController extends SmallWindow {
+/**
+ * Controls the register window.
+ *
+ * @author Jesse Chen
+ */
+
+public class RegisterController extends SmallWindowController {
 
     @FXML
     private PasswordField passwordField2;
 
-    private PasswordManagerModel model;
+    private LoginController loginController;
 
-    public void initialize(PasswordManagerModel model, BorderPane parentBorderPane, Stage regStage) {
-        this.model = model;
-        this.parentBorderPane = parentBorderPane;
-        super.currentStage = regStage;
+    public void initialize(LoginController loginController) {
+        this.loginController = loginController;
     }
 
+
+    /**
+     * Adds new user to the current model when the finish button is pressed.
+     */
     @Override
     public void mainButtonOnAction() {
         String username = usernameTextField.getText();
         String password1 = passwordField1.getText();
         String password2 = passwordField2.getText();
 
-        if (model.hasUser(username)) {
+        if (loginController.model.hasUser(username)) {
             invalidLabel.setText("User exists");
             invalidLabel.setVisible(true);
         } else if (!password1.equals(password2)) {
@@ -35,9 +41,9 @@ public class RegisterController extends SmallWindow {
             invalidLabel.setText("Min password length: " + PasswordManagerModel.MIN_PASSWORD_LENGTH);
             invalidLabel.setVisible(true);
         } else {
-            model.addUser(username, password1);
-            parentBorderPane.setDisable(false);
-            currentStage.close();
+            loginController.model.addUser(username, password1);
+            loginController.borderPane.setDisable(false);
+            loginController.regStage.close();
         }
     }
 }

@@ -5,9 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.Colors;
@@ -16,19 +13,26 @@ import model.PasswordManagerModel;
 import java.io.IOException;
 
 /**
- * @author jessechen
+ * Controls the login window.
+ *
+ * @author Jesse Chen
  */
-public class LoginController extends SmallWindow {
+
+public class LoginController extends SmallWindowController {
 
 
     @FXML
     private Button registerButton;
 
     @FXML
-    private BorderPane borderPane;
+    BorderPane borderPane;
 
-    private PasswordManagerModel model;
+    PasswordManagerModel model;
+    Stage regStage;
 
+    /**
+     * Default constructor.
+     */
     public LoginController() {
         model = new PasswordManagerModel();
         System.out.println("New model created");
@@ -36,6 +40,10 @@ public class LoginController extends SmallWindow {
 
     //=============== Login button =====================================================================================
 
+
+    /**
+     * Opens the main password manager window and adds user info to the model.
+     */
     @Override
     public void mainButtonOnAction() {
         String username = usernameTextField.getText();
@@ -73,25 +81,18 @@ public class LoginController extends SmallWindow {
 
     //================ Register button =================================================================================
 
+    /**
+     * Opens register window.
+     */
     public void registerButtonAction() {
         System.out.println("Registering new user");
-        openRegisterWindow();
-    }
-
-    public void registerButtonOnEnter() { registerButton.setStyle(Colors.setBackgroundColor(Colors.LIGHT_GREY)); }
-
-    public void registerButtonOnExit() { registerButton.setStyle(Colors.setBackgroundColor(Colors.WHITE)); }
-
-    // https://stackoverflow.com/questions/17014012/how-to-unmask-a-javafx-passwordfield-or-properly-mask-a-textfield
-
-    private void openRegisterWindow() {
         try {
             String viewPath = PasswordManagerModel.VIEW_DIRECTORY + "RegisterView.fxml";
             FXMLLoader loader = new FXMLLoader(getClass().getResource(viewPath));
-            Stage regStage = new Stage();
+            regStage = new Stage();
             Parent parent = loader.load();
             RegisterController regController = loader.getController();
-            regController.initialize(model, borderPane, regStage);
+            regController.initialize(this);
             regStage.setTitle("Register");
             regStage.setScene(new Scene(parent));
             regStage.setResizable(false);
@@ -102,4 +103,13 @@ public class LoginController extends SmallWindow {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Allows color changes when mouse hovers over button.
+     */
+    public void registerButtonOnEnter() { registerButton.setStyle(Colors.setBackgroundColor(Colors.LIGHT_GREY)); }
+
+    public void registerButtonOnExit() { registerButton.setStyle(Colors.setBackgroundColor(Colors.WHITE)); }
+
+    // https://stackoverflow.com/questions/17014012/how-to-unmask-a-javafx-passwordfield-or-properly-mask-a-textfield
 }

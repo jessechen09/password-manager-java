@@ -11,32 +11,43 @@ Some things you can do include, but are not limited to:
 |Easy                  |Modify the UI.|
 |Easy                  |Investigate how things are handled when we have a multiple InternetAccounts with the same domain and optimize.|
 |Easy/Medium           |Look around and fix any bugs.|
-|Medium                |As of now, when we press the close button (the x button the top corners), the parent pane remains disabled. Fix this.|
+|Medium                |As of now, when we press the close button (the x button the top corners), the parent pane remains disabled. Fix this by adding a "cancel" button|
 |Medium                |Add a feature that allows users to delete domains from the password manager.|
 |Medium                |Add a feature that allows users to delete their account from the password manager.|
 |Medium                |Add a feature that allows users to change their login password.|
 |Medium                |Add a feature that allows users to change their domains/usernames/passwords for each InternetAccount.|
 |Medium                |Add a sort feature for the domains, i.e. A-Z and Z-A.|
-|Medium                |Launch the default browser when user clicks on the password domain and open the website.
+|Medium                |Add a feature that launches the default browser when user clicks on the password domain and open the website.|
 |Hard                  |Add animations to UI.|
 |Hard                  |Instead of using .txt files, use a data base to store all the info.|
 |Super Hard            |Implement security features.|
 
+When you launch the application, you will first see the login window. You can type your username and password to login, or register a new user.
 <p align="center">
 <img src="https://github.com/jessechen09/password-manager-java/blob/master/screenshots/login.png?raw=true" width=50%>
 </p>
+
+When you register a new user with a username that already exists, you will get an error. Be sure to choose a unique username! You will also have to type the password twice indentically.
 <p align="center">
-<img src="https://github.com/jessechen09/password-manager-java/blob/master/screenshots/registerFail.png?raw=true" width=46%>
+<img src="https://github.com/jessechen09/password-manager-java/blob/master/screenshots/registerFail.png?raw=true" width=45%>
 </p>
+
+After logging in, you will reach the main window where all the passwords are stored. You can click on the buttons to copy the username and passwords. Lots of work can be done here, so be creative!
 <p align="center">
-<img src="https://github.com/jessechen09/password-manager-java/blob/master/screenshots/main.png?raw=true" width=50%>
+<img src="https://github.com/jessechen09/password-manager-java/blob/master/screenshots/main.png?raw=true" width=88%>
 </p>
+
+When you want to add a new password, the main window will be disabled until you finish adding a new password.
 <p align="center">
-<img src="https://github.com/jessechen09/password-manager-java/blob/master/screenshots/addPassMain.png?raw=true" width=50%>
+<img src="https://github.com/jessechen09/password-manager-java/blob/master/screenshots/addPassMain.png?raw=true" width=74%>
 </p>
+
+Make sure your passwords match!
 <p align="center">
 <img src="https://github.com/jessechen09/password-manager-java/blob/master/screenshots/addPassFail.png?raw=true" width=50%>
 </p>
+
+Everything is fine now.
 <p align="center">
 <img src="https://github.com/jessechen09/password-manager-java/blob/master/screenshots/addPass.png?raw=true" width=50%>
 </p>

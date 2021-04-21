@@ -22,4 +22,10 @@ Some things you can do include, but are not limited to:
 |Hard                  |Instead of using .txt files, use a data base to store all the info.|
 |Super Hard            |Implement security features.|
 
+
+<img src="https://github.com/jessechen09/password-manager-java/blob/master/screenshots/login.png?raw=true" width=50%>
+<img src="https://github.com/jessechen09/password-manager-java/blob/master/screenshots/registerFail.png?raw=true" width=50%>
+<img src="https://github.com/jessechen09/password-manager-java/blob/master/screenshots/main.png?raw=true" width=50%>
+<img src="https://github.com/jessechen09/password-manager-java/blob/master/screenshots/addPassMain.png?raw=true" width=50%>
+<img src="https://github.com/jessechen09/password-manager-java/blob/master/screenshots/addPassFail.png?raw=true" width=50%>
 <img src="https://github.com/jessechen09/password-manager-java/blob/master/screenshots/addPass.png?raw=true" width=50%>

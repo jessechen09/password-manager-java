@@ -22,25 +22,31 @@ Some things you can do include, but are not limited to:
 |Hard                  |Instead of using .txt files, use a data base to store all the info.|
 |Super Hard            |Implement security features.|
 
+**Login window**
 When you launch the application, you will first see the login window. You can type your username and password to login, or register a new user.
 <p align="center">
 <img src="https://github.com/jessechen09/password-manager-java/blob/master/screenshots/login.png?raw=true" width=50%>
 </p>
 
+**Register window**
 When you register a new user with a username that already exists, you will get an error. Be sure to choose a unique username! You will also have to type the password twice indentically.
 <p align="center">
 <img src="https://github.com/jessechen09/password-manager-java/blob/master/screenshots/registerFail.png?raw=true" width=45%>
 </p>
 
+**Main window**
 After logging in, you will reach the main window where all the passwords are stored. You can click on the buttons to copy the username and passwords. Lots of work can be done here, so be creative!
 <p align="center">
 <img src="https://github.com/jessechen09/password-manager-java/blob/master/screenshots/main.png?raw=true" width=88%>
 </p>
 
+**Add new password window**
 When you want to add a new password, the main window will be disabled until you finish adding a new password.
 <p align="center">
 <img src="https://github.com/jessechen09/password-manager-java/blob/master/screenshots/addPassMain.png?raw=true" width=74%>
 </p>
+
+
 
 Make sure your passwords match!
 <p align="center">

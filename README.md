@@ -21,4 +21,5 @@ Some things you can do include, but are not limited to:
 |Hard                  |Add animations to UI.|
 |Hard                  |Instead of using .txt files, use a data base to store all the info.|
 |Super Hard            |Implement security features.|
-<img src=“https://github.com/jessechen09/password-manager-java/blob/master/screenshots/addPass.png?raw=true” width="250" height="500"/>
+
+<img src="https://github.com/jessechen09/password-manager-java/blob/master/screenshots/addPass.png?raw=true" width=50%>

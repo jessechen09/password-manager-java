@@ -10,6 +10,7 @@ Some things you can do include, but are not limited to:
 | :------------------- | :--- |
 |Easy                  |Modify the UI.|
 |Easy                  |Investigate how things are handled when we have a multiple InternetAccounts with the same domain and optimize.|
+|Easy/Medium           |Look around and fix any bugs.|
 |Medium                |As of now, when we press the close button (the x button the top corners), the parent pane remains disabled. Fix this.|
 |Medium                |Add a feature that allows users to delete domains from the password manager.|
 |Medium                |Add a feature that allows users to delete their account from the password manager.|
@@ -20,5 +21,4 @@ Some things you can do include, but are not limited to:
 |Hard                  |Add animations to UI.|
 |Hard                  |Instead of using .txt files, use a data base to store all the info.|
 |Super Hard            |Implement security features.|
-
-![image](https://user-images.githubusercontent.com/54601077/115500488-39604700-a226-11eb-9cad-25313e28842a.png)
+<img src=“https://user-images.githubusercontent.com/54601077/115500488-39604700-a226-11eb-9cad-25313e28842a.png” width="250" />

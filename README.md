@@ -28,7 +28,7 @@ Some tasks you can work on include, but are not limited to:
 
 ## How this project works
 
-This project uses the MVC software design pattern. The FXML files are the views, which are controlled by separate controller classes. There is one main model that stores all the user and account information. The "database" is simulated with .txt files, which the model reads when a user logs in or writes to when new users or internt accounts are added.
+This project uses the MVC software design pattern. The FXML files are the views, which are controlled by separate controller classes. There is one main model that stores all the user and account information. The "database" is simulated with .txt files, which the model reads when a user logs in or writes to when new users or internet accounts are added.
 
 ## Windows
 

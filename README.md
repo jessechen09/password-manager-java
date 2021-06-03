@@ -8,7 +8,7 @@ This is my first personal project, and I think it's a good starting point for th
 
 ## Prerequisites
 
-Java, MVC architecture, OOP
+Java, OOP, MVC architecture, and JavaFX, to list a few.
 
 ## Task ideas
 

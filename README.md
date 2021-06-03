@@ -6,6 +6,10 @@ DISCLAIMER: This is not a true password manager and has ZERO security features. 
 
 This is my first personal project, and I think it's a good starting point for those who are trying to find projects to work on. By working on this project, you also practice reading and understanding someone else's code, which may not necessarily be well written! Hopefully, mine is okay.
 
+## Prerequisites
+
+Java, MVC architecture, OOP
+
 ## Task ideas
 
 Some tasks you can work on include, but are not limited to:

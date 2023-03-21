@@ -74,6 +74,10 @@ public class MainController {
             addPassStage.setResizable(false);
             addPassStage.show();
             borderPane.setDisable(true);
+
+            addPassStage.setOnCloseRequest(evt -> {
+                openMainViewControlerOnClosing();
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -106,6 +110,21 @@ public class MainController {
             ((Label) hbox.getChildren().get(0)).setText(internetAccount.getDomain());
             HBox subHBox = (HBox) hbox.getChildren().get(1);
             ((Button) (subHBox.getChildren().get(0))).setText(internetAccount.getUserName());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void openMainViewControlerOnClosing() {
+        try {
+            String loginDirectory = PasswordManagerModel.VIEW_DIRECTORY + "MainView.fxml";
+            FXMLLoader loader = new FXMLLoader((getClass().getResource(loginDirectory)));
+            Parent parent = loader.load();
+            Stage mainStage = new Stage();
+            mainStage.setScene(new Scene(parent));
+            mainStage.setResizable(false);
+            mainStage.show();
+            logoutButton.getScene().getWindow().hide();
         } catch (IOException e) {
             e.printStackTrace();
         }

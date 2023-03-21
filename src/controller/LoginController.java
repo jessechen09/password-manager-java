@@ -103,7 +103,10 @@ public class LoginController extends SmallWindowController {
             regStage.setResizable(false);
             regStage.show();
             borderPane.setDisable(true);
-            //            registerButton.getScene().getWindow().hide();
+
+            regStage.setOnCloseRequest(evt -> {
+                openLoginControlerOnClosing();
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -116,5 +119,18 @@ public class LoginController extends SmallWindowController {
 
     public void registerButtonOnExit() { registerButton.setStyle(Colors.setBackgroundColor(Colors.WHITE)); }
 
-    // https://stackoverflow.com/questions/17014012/how-to-unmask-a-javafx-passwordfield-or-properly-mask-a-textfield
+    private void openLoginControlerOnClosing() {
+        try {
+            String loginDirectory = PasswordManagerModel.VIEW_DIRECTORY + "LoginView.fxml";
+            FXMLLoader loader = new FXMLLoader((getClass().getResource(loginDirectory)));
+            Parent parent = loader.load();
+            Stage mainStage = new Stage();
+            mainStage.setScene(new Scene(parent));
+            mainStage.setResizable(false);
+            mainStage.show();
+            mainButton.getScene().getWindow().hide();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

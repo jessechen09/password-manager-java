@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -28,6 +29,9 @@ public class MainController {
 
     @FXML
     Button addNewPasswordButton;
+
+    @FXML
+    Button addGeneratedPasswordButton;
 
     @FXML
     VBox passwordsVBox;
@@ -125,6 +129,29 @@ public class MainController {
             mainStage.setResizable(false);
             mainStage.show();
             logoutButton.getScene().getWindow().hide();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addGeneratedPasswordButtonAction(ActionEvent actionEvent) {
+        System.out.println("Adding new password...");
+        try {
+            String viewPath = PasswordManagerModel.VIEW_DIRECTORY + "AddPassGeneratorView.fxml";
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(viewPath));
+            addPassStage = new Stage();
+            Parent parent = loader.load();
+            AddPassController addPassController = loader.getController();
+            addPassController.initialize(this);
+            addPassStage.setTitle("Generate password");
+            addPassStage.setScene(new Scene(parent));
+            addPassStage.setResizable(false);
+            addPassStage.show();
+            borderPane.setDisable(true);
+
+            addPassStage.setOnCloseRequest(evt -> {
+                openMainViewControlerOnClosing();
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }

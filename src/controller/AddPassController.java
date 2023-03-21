@@ -41,10 +41,15 @@ public class AddPassController extends SmallWindowController {
         String password1 = passwordField1.getText();
         String password2 = passwordField2.getText();
 
-        if (!password1.equals(password2)) {
+        if(domain.isEmpty() || username.isEmpty() || password1.isEmpty() || password2.isEmpty()) {
+            invalidLabel.setText("Empty field(s)");
+            invalidLabel.setVisible(true);
+        }
+        else if (!password1.equals(password2)) {
             invalidLabel.setText("Passwords do not match");
             invalidLabel.setVisible(true);
-        } else {
+        }
+        else {
             InternetAccount newInternetAccount = new InternetAccount(domain, username, password1);
             parentController.user.addInternetAccount(newInternetAccount);
             parentController.borderPane.setDisable(false);

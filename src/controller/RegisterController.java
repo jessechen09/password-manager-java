@@ -31,7 +31,10 @@ public class RegisterController extends SmallWindowController {
         String password1 = passwordField1.getText();
         String password2 = passwordField2.getText();
 
-        if (loginController.model.hasUser(username)) {
+        if(username.isEmpty() || password1.isEmpty() || password2.isEmpty()){
+            invalidLabel.setText("Empty field(s)");
+            invalidLabel.setVisible(true);
+        } else if (loginController.model.hasUser(username)) {
             invalidLabel.setText("User exists");
             invalidLabel.setVisible(true);
         } else if (!password1.equals(password2)) {

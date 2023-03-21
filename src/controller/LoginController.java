@@ -48,7 +48,12 @@ public class LoginController extends SmallWindowController {
     public void mainButtonOnAction() {
         String username = usernameTextField.getText();
         String password = passwordField1.getText();
-        if (model.hasUser(username) && model.isCorrectPassword(username, password)) {
+
+        if(username.isEmpty() || password.isEmpty()){
+            invalidLabel.setText("Empty field(s)");
+            invalidLabel.setVisible(true);
+        }
+        else if (model.hasUser(username) && model.isCorrectPassword(username, password)) {
             model.setUser(model.getUser(username));
             System.out.println("Logged in: " + model.getCurrentUserName());
             openMainWindow();
@@ -71,7 +76,7 @@ public class LoginController extends SmallWindowController {
             mainController.initialize(model);
             mainStage.setTitle("Password Manager");
             mainStage.setScene(new Scene(parent));
-            mainStage.setResizable(false);
+            mainStage.setResizable(true);
             mainStage.show();
             mainButton.getScene().getWindow().hide();
         } catch (IOException e) {

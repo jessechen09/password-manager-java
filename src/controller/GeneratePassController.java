@@ -57,6 +57,9 @@ public class GeneratePassController extends SmallWindowController {
         }
         else {
             String pwd = PasswordGenerator.generatePassword(hasNumbers,hasSymbols,hasUpperAndLower);
+            while(!isValidPassword(pwd)) {
+                pwd = PasswordGenerator.generatePassword(hasNumbers,hasSymbols,hasUpperAndLower);
+            }
             InternetAccount newInternetAccount = new InternetAccount(domain, username, pwd);
             parentController.user.addInternetAccount(newInternetAccount);
             parentController.borderPane.setDisable(false);

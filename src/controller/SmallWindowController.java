@@ -48,4 +48,8 @@ public abstract class SmallWindowController {
         invalidLabel.setVisible(false);
         if (event.getCode() == KeyCode.ENTER) mainButtonOnAction();
     }
+
+    public static boolean isValidPassword(String password) {
+        return !(password.matches("[^\\p{ASCII}]") || password.matches("[\\s\\p{C}]") || password.matches(".*[\\\\/\'\"].*"));
+    }
 }

@@ -43,7 +43,11 @@ public class RegisterController extends SmallWindowController {
         } else if (password1.length() < PasswordManagerModel.MIN_PASSWORD_LENGTH) {
             invalidLabel.setText("Min password length: " + PasswordManagerModel.MIN_PASSWORD_LENGTH);
             invalidLabel.setVisible(true);
-        } else {
+        } else if(!isValidPassword(password1)) {
+            invalidLabel.setText("Passwords is invalid (e.g. Spaces / Non-ASCII characters / Control characters / Certain special characters)");
+            invalidLabel.setVisible(true);
+        }
+        else {
             loginController.model.addUser(username, password1);
             loginController.borderPane.setDisable(false);
             loginController.regStage.close();

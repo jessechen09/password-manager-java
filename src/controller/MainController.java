@@ -141,8 +141,8 @@ public class MainController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(viewPath));
             addPassStage = new Stage();
             Parent parent = loader.load();
-            AddPassController addPassController = loader.getController();
-            addPassController.initialize(this);
+            GeneratePassController genPassController = loader.getController();
+            genPassController.initialize(this);
             addPassStage.setTitle("Generate password");
             addPassStage.setScene(new Scene(parent));
             addPassStage.setResizable(false);

@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.control.CheckBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddPassController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GeneratePassController">
    <bottom>
       <AnchorPane prefHeight="450.0" prefWidth="630.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
          <children>
@@ -19,9 +19,9 @@
                   <TextField fx:id="domainTextField" onKeyPressed="#fieldOnEnter" prefWidth="160.0" promptText="Domain" />
                   <TextField fx:id="usernameTextField" onKeyPressed="#fieldOnEnter" prefWidth="160.0" promptText="Username" />
                   <Text text="Choose Password Type:"/>
-                  <CheckBox fx:id="checkboxField1" text="Include Numbers (e.g. 0123456789)" />
-                  <CheckBox fx:id="checkboxField2" text="Include Symbols (e.g. @#$%!)" />
-                  <CheckBox fx:id="checkboxField3" text="Upper and lowercase characters" />
+                  <CheckBox fx:id="checkBoxNumbers" text="Include Numbers (e.g. 0123456789)" />
+                  <CheckBox fx:id="checkBoxSymbols" text="Include Symbols (e.g. @#$%!)" />
+                  <CheckBox fx:id="checkBoxUpperLower" text="Upper and lowercase characters" />
                   <Button fx:id="mainButton" mnemonicParsing="false" onAction="#mainButtonOnAction" onMouseEntered="#mainButtonOnEnter" onMouseExited="#mainButtonOnExit" prefHeight="27.0" prefWidth="160.5" style="-fx-background-color: #C92D39;" text="Finish" textFill="WHITE" />
                   <Label fx:id="invalidLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="160.0" style="-fx-background-color: #FAE4ED;" textAlignment="CENTER" textFill="#a5155f" visible="false" />
                </children>

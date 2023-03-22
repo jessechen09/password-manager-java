@@ -49,7 +49,7 @@ public class AddPassController extends SmallWindowController {
             invalidLabel.setText("Passwords do not match");
             invalidLabel.setVisible(true);
         }
-        else if(isValidPassword(password1)) {
+        else if(!isValidPassword(password1)) {
             invalidLabel.setText("Passwords is invalid (e.g. Spaces / Non-ASCII characters / Control characters / Certain special characters)");
             invalidLabel.setVisible(true);
         }

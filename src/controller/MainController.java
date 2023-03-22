@@ -111,11 +111,19 @@ public class MainController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(hboxViewDir));
             HBox hbox = loader.load();
             UserHBoxController userHBoxController = loader.getController();
-            userHBoxController.initialize(internetAccount);
+
             passwordsVBox.getChildren().add(hbox);
             ((Label) hbox.getChildren().get(0)).setText(internetAccount.getDomain());
             HBox subHBox = (HBox) hbox.getChildren().get(1);
             ((Button) (subHBox.getChildren().get(0))).setText(internetAccount.getUserName());
+            Button deleteButton = (Button) subHBox.getChildren().get(2); // get the delete button
+            userHBoxController.initialize(internetAccount);
+
+            deleteButton.setOnAction(event -> {
+                System.out.println("Delete button was pressed");
+                passwordsVBox.getChildren().remove(hbox);
+                user.removeInternetAccount(internetAccount);
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }

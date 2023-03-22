@@ -120,17 +120,7 @@ public class LoginController extends SmallWindowController {
     public void registerButtonOnExit() { registerButton.setStyle(Colors.setBackgroundColor(Colors.WHITE)); }
 
     private void openLoginControlerOnClosing() {
-        try {
-            String loginDirectory = PasswordManagerModel.VIEW_DIRECTORY + "LoginView.fxml";
-            FXMLLoader loader = new FXMLLoader((getClass().getResource(loginDirectory)));
-            Parent parent = loader.load();
-            Stage mainStage = new Stage();
-            mainStage.setScene(new Scene(parent));
-            mainStage.setResizable(false);
-            mainStage.show();
-            mainButton.getScene().getWindow().hide();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        borderPane.setDisable(false);
+        regStage.close();
     }
 }

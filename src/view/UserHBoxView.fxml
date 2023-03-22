@@ -11,10 +11,11 @@
          <HBox.margin>
             <Insets />
          </HBox.margin></Label>
-      <HBox prefHeight="27.0" prefWidth="257.0" spacing="50.0">
+      <HBox prefHeight="27.0" prefWidth="257.0" spacing="10.0">
          <children>
-              <Button fx:id="copyUsernameButton" alignment="CENTER" mnemonicParsing="false" onAction="#copyUsernameButtonOnAction" onMouseEntered="#buttonOnEnter" onMouseExited="#buttonOnExit" prefWidth="104.0" text="Copy username" textAlignment="CENTER" />
-              <Button fx:id="copyPasswordButton" mnemonicParsing="false" onAction="#copyPasswordButtonOnAction" onMouseEntered="#buttonOnEnter" onMouseExited="#buttonOnExit" prefWidth="104.0" text="Copy password" />
+              <Button fx:id="copyUsernameButton" alignment="CENTER" mnemonicParsing="false" onAction="#copyUsernameButtonOnAction" onMouseEntered="#buttonOnEnter" onMouseExited="#buttonOnExit" prefWidth="150.0" text="Copy username" textAlignment="CENTER" />
+              <Button fx:id="copyPasswordButton" mnemonicParsing="false" onAction="#copyPasswordButtonOnAction" onMouseEntered="#buttonOnEnter" onMouseExited="#buttonOnExit" prefWidth="150.0" text="Copy password" />
+              <Button fx:id="deletePasswordButton" mnemonicParsing="false" onMouseEntered="#buttonOnEnter" onMouseExited="#buttonOnExit" prefWidth="150.0" text="Delete" />
          </children>
       </HBox>
     </children>

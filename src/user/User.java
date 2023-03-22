@@ -8,18 +8,15 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class User {
     private Account account;
-    private HashMap<String, List<InternetAccount>> internetAccounts;
+    private HashMap<String, Map<String,InternetAccount>> internetAccounts;
 
     public User(Account account) {
         this.account = account;
-        this.internetAccounts = new HashMap<String, List<InternetAccount>>();
+        this.internetAccounts = new HashMap<String, Map<String,InternetAccount>>();
 
         // load in all of user's internet account info
         try {
@@ -41,12 +38,13 @@ public class User {
                         String username = jsonObject2.getString("username");
                         String password = jsonObject2.getString("password");
                         if(internetAccounts.containsKey(domain)) {
-                            internetAccounts.get(domain).add(new InternetAccount(domain, username, password));
+                            internetAccounts.get(domain).put(username, new InternetAccount(domain, username, password));
                         }
                         else {
-                            List<InternetAccount> list = new LinkedList<>();
-                            list.add(new InternetAccount(domain, username, password));
-                            internetAccounts.put(domain,list);
+                            internetAccounts.put(domain, new HashMap<>());
+                            Map<String,InternetAccount> map = internetAccounts.get(domain);
+                            map.put(username,(new InternetAccount(domain, username, password)));
+                            internetAccounts.put(domain,map);
                         }
                     }
                 }
@@ -57,14 +55,14 @@ public class User {
     }
 
     public List<InternetAccount> getInternetAccount(String domain) {
-        return internetAccounts.get(domain);
+        return new ArrayList<>(internetAccounts.get(domain).values());
     }
 
     public Account getAccount() {
         return account;
     }
 
-    public HashMap<String, List<InternetAccount>> getInternetAccounts() {
+    public HashMap<String, Map<String,InternetAccount>> getInternetAccounts() {
         return internetAccounts;
     }
 
@@ -120,15 +118,78 @@ public class User {
             writer.close();
 
             if(internetAccounts.containsKey(domain)) {
-                internetAccounts.get(domain).add(new InternetAccount(domain, username, password));
+                internetAccounts.get(domain).put(username, new InternetAccount(domain, username, password));
             }
             else {
-                List<InternetAccount> list = new LinkedList<>();
-                list.add(new InternetAccount(domain, username, password));
-                internetAccounts.put(domain,list);
+                internetAccounts.put(domain, new HashMap<>());
+                Map<String,InternetAccount> map = internetAccounts.get(domain);
+                map.put(username,(new InternetAccount(domain, username, password)));
+                internetAccounts.put(domain,map);
             }
         } catch (IOException | JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    public void removeInternetAccount(InternetAccount internetAccount) {
+        String domain = internetAccount.getDomain();
+        String username = internetAccount.getUserName();
+
+        // Check if the domain exists in the user's internetAccounts
+        if (internetAccounts.containsKey(domain)) {
+            Map<String, InternetAccount> accounts = internetAccounts.get(domain);
+
+            // Check if the account with the given username exists in the domain's accounts
+            if (accounts.containsKey(username)) {
+                accounts.remove(username);
+
+                // Update the user's internetAccounts and the JSON file
+                internetAccounts.put(domain, accounts);
+                try {
+                    File file = new File(PasswordManagerModel.DATA_DIRECTORY + account.getUserName() + ".json");
+                    if (file.exists()) {
+                        Scanner scanner = new Scanner(file);
+                        StringBuilder jsonStr = new StringBuilder();
+                        while (scanner.hasNextLine()) {
+                            jsonStr.append(scanner.nextLine());
+                        }
+                        JSONArray jsonArray = new JSONArray(jsonStr.toString());
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject jsonObject = jsonArray.getJSONObject(i);
+                            if (jsonObject.getString("domain").equals(domain)) {
+                                JSONArray accountArray = jsonObject.getJSONArray("accounts");
+                                for (int j = 0; j < accountArray.length(); j++) {
+                                    JSONObject jsonObject2 = accountArray.getJSONObject(j);
+                                    if (jsonObject2.getString("username").equals(username)) {
+                                        accountArray = removeJsonObjectFromArray(accountArray,j);
+                                        j--;
+                                        break;
+                                    }
+                                }
+
+                                jsonObject.put("accounts", accountArray);
+                                String newJsonStr = jsonArray.toString().replace(jsonObject.toString(), jsonObject.toString());
+                                FileWriter writer = new FileWriter(file);
+                                writer.write(newJsonStr);
+                                writer.close();
+                                break;
+                            }
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private JSONArray removeJsonObjectFromArray(JSONArray jsonArray, int index) throws JSONException {
+        JSONArray list = new JSONArray();
+        for (int i = 0; i < jsonArray.length(); i++) {
+            if (i != index) {
+                list.put(jsonArray.getJSONObject(i));
+            }
+        }
+        return list;
     }
 }

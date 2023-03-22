@@ -18,5 +18,6 @@
     <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:win:19" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-base:19" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-base:win:19" level="project" />
+    <orderEntry type="library" name="Maven: org.json:json:20080701" level="project" />
   </component>
 </module>

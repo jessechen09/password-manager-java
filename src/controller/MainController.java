@@ -56,8 +56,10 @@ public class MainController {
         System.out.println("This account has these domains stored:");
 
         this.user = model.getCurrentUser();
-        for (InternetAccount internetAccount : user.getInternetAccounts().values()) {
-            addPasswordHBox(internetAccount);
+        for (String domain : user.getInternetAccounts().keySet()) {
+            for (InternetAccount internetAccount : user.getInternetAccount(domain)) {
+                addPasswordHBox(internetAccount);
+            }
         }
     }
 

@@ -9,15 +9,17 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 
 public class User {
     private Account account;
-    private HashMap<String, InternetAccount> internetAccounts;
+    private HashMap<String, List<InternetAccount>> internetAccounts;
 
     public User(Account account) {
         this.account = account;
-        this.internetAccounts = new HashMap<String, InternetAccount>();
+        this.internetAccounts = new HashMap<String, List<InternetAccount>>();
 
         // load in all of user's internet account info
         try {
@@ -35,10 +37,17 @@ public class User {
 
                     JSONArray accountArray = jsonObject.getJSONArray("accounts");
                     for (int j = 0; j < accountArray.length(); j++) {
-                        JSONObject jsonObject2 = accountArray.getJSONObject(i);
+                        JSONObject jsonObject2 = accountArray.getJSONObject(j);
                         String username = jsonObject2.getString("username");
                         String password = jsonObject2.getString("password");
-                        internetAccounts.put(domain, new InternetAccount(domain, username, password));
+                        if(internetAccounts.containsKey(domain)) {
+                            internetAccounts.get(domain).add(new InternetAccount(domain, username, password));
+                        }
+                        else {
+                            List<InternetAccount> list = new LinkedList<>();
+                            list.add(new InternetAccount(domain, username, password));
+                            internetAccounts.put(domain,list);
+                        }
                     }
                 }
             }
@@ -47,7 +56,7 @@ public class User {
         }
     }
 
-    public InternetAccount getInternetAccount(String domain) {
+    public List<InternetAccount> getInternetAccount(String domain) {
         return internetAccounts.get(domain);
     }
 
@@ -55,7 +64,7 @@ public class User {
         return account;
     }
 
-    public HashMap<String, InternetAccount> getInternetAccounts() {
+    public HashMap<String, List<InternetAccount>> getInternetAccounts() {
         return internetAccounts;
     }
 
@@ -110,7 +119,14 @@ public class User {
             writer.write(jsonArray.toString());
             writer.close();
 
-            internetAccounts.put(domain, new InternetAccount(domain, username, password));
+            if(internetAccounts.containsKey(domain)) {
+                internetAccounts.get(domain).add(new InternetAccount(domain, username, password));
+            }
+            else {
+                List<InternetAccount> list = new LinkedList<>();
+                list.add(new InternetAccount(domain, username, password));
+                internetAccounts.put(domain,list);
+            }
         } catch (IOException | JSONException e) {
             e.printStackTrace();
         }

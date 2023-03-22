@@ -32,9 +32,14 @@ public class User {
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                     String domain = jsonObject.getString("domain");
-                    String username = jsonObject.getString("username");
-                    String password = jsonObject.getString("password");
-                    internetAccounts.put(domain, new InternetAccount(domain, username, password));
+
+                    JSONArray accountArray = jsonObject.getJSONArray("accounts");
+                    for (int j = 0; j < accountArray.length(); j++) {
+                        JSONObject jsonObject2 = accountArray.getJSONObject(i);
+                        String username = jsonObject2.getString("username");
+                        String password = jsonObject2.getString("password");
+                        internetAccounts.put(domain, new InternetAccount(domain, username, password));
+                    }
                 }
             }
         } catch (Exception e) {

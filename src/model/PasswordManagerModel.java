@@ -130,6 +130,11 @@ public class PasswordManagerModel {
 
             File userFile = new File(DATA_DIRECTORY + username + ".json");
             userFile.createNewFile();
+            writer = new FileWriter(userFile, false);
+            writer.write("[ ]");
+            writer.flush();
+            writer.close();
+
 
             userMap.put(username, new User(new Account(username, pwd)));
         } catch (IOException | JSONException e) {

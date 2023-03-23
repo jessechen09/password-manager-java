@@ -42,6 +42,8 @@ public class MainController {
     @FXML
     BorderPane borderPane;
 
+    private PasswordManagerModel model;
+
 
     /**
      * FXMl file can only call a default constructor, but we can't do much inside it, so let's just
@@ -55,6 +57,7 @@ public class MainController {
         System.out.println("Model transferred from login window to main window");
         System.out.println("This account has these domains stored:");
 
+        this.model = model;
         this.user = model.getCurrentUser();
         for (String domain : user.getInternetAccounts().keySet()) {
             for (InternetAccount internetAccount : user.getInternetAccount(domain)) {
@@ -129,12 +132,12 @@ public class MainController {
         }
     }
 
-    private void openMainViewControlerOnClosing() {
+    void openMainViewControlerOnClosing() {
         borderPane.setDisable(false);
         addPassStage.close();
     }
 
-    public void addGeneratedPasswordButtonAction(ActionEvent actionEvent) {
+    public void addGeneratedPasswordButtonAction() {
         System.out.println("Adding new password...");
         try {
             String viewPath = PasswordManagerModel.VIEW_DIRECTORY + "AddPassGeneratorView.fxml";
@@ -155,5 +158,32 @@ public class MainController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void deleteAccButtonAction() {
+        System.out.println("Delete Account?");
+        try {
+            String viewPath = PasswordManagerModel.VIEW_DIRECTORY + "DeleteAccView.fxml";
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(viewPath));
+            addPassStage = new Stage();
+            Parent parent = loader.load();
+            DeleteAccController deleteAccController = loader.getController();
+            deleteAccController.initialize(this);
+            addPassStage.setTitle("Delete account");
+            addPassStage.setScene(new Scene(parent));
+            addPassStage.setResizable(false);
+            addPassStage.show();
+            borderPane.setDisable(true);
+
+            addPassStage.setOnCloseRequest(evt -> {
+                openMainViewControlerOnClosing();
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void removeUser() {
+        model.removeUser(user);
     }
 }

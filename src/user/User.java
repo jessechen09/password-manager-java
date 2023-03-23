@@ -192,4 +192,8 @@ public class User {
         }
         return list;
     }
+
+    public boolean hasAccount(String domain, String username) {
+        return (internetAccounts.containsKey(domain) && internetAccounts.get(domain).containsKey(username));
+    }
 }

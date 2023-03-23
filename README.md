@@ -18,12 +18,12 @@ Some tasks you can work on include, but are not limited to:
 | :------------------- | :----- | :--- |
 |Easy                  | YES |Modify the UI.|
 |Easy                  | YES |Change the extension of the files used to store the data (json).|
-|Easy                  |     |Do not allow users in the same domain to have the different passwords / duplicate data.|
+|Easy                  | YES |Do not allow users in the same domain to have the different passwords / duplicate data.|
 |Easy                  | YES |Investigate how things are handled when we have a multiple InternetAccounts with the same domain and optimize.|
 |Easy/Medium           | YES |Look around and fix any bugs.|
 |Medium                | YES |As of now, when we press the close button (the x button the top corners), the parent pane remains disabled. Fix this by adding a "cancel" button|
-|Medium                | |Add a feature that allows users to delete domains from the password manager.|
-|Medium                | |Add a feature that allows users to delete their account from the password manager.|
+|Medium                | YES |Add a feature that allows users to delete domains from the password manager.|
+|Medium                | YES |Add a feature that allows users to delete their account from the password manager.|
 |Medium                | |Add a feature that allows users to change their login password.|
 |Medium                | |Add a feature that allows users to change their domains/usernames/passwords for each InternetAccount.|
 |Medium                | |Add a sort feature for the domains, i.e. A-Z and Z-A.|

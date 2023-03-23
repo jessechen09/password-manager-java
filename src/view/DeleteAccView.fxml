@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DeleteAccController">
+   <bottom>
+      <AnchorPane prefHeight="400.0" prefWidth="630.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
+         <children>
+            <VBox  alignment="CENTER" layoutX="55.0" prefHeight="243.0" prefWidth="160.0" spacing="20.0">
+               <children>
+                  <Text text="Do you want to delete your account?"/>
+                  <Button fx:id="yesButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#yesButtonOnAction" onMouseEntered="#mainButtonOnEnter" onMouseExited="#mainButtonOnExit" prefHeight="27.0" prefWidth="160.5" style="-fx-background-color: #C92D39;" text="Yes" textFill="WHITE" />
+                  <Button fx:id="mainButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#mainButtonOnAction" onMouseEntered="#mainButtonOnEnter" onMouseExited="#mainButtonOnExit" prefHeight="27.0" prefWidth="160.5" style="-fx-background-color: #C92D39;" text="No" textFill="WHITE" />
+                  <Label fx:id="invalidLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="160.0" style="-fx-background-color: #FAE4ED;" textAlignment="CENTER" textFill="#a5155f" visible="false" />
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </bottom>
+   <top>
+      <AnchorPane prefHeight="125.0" prefWidth="300.0" style="-fx-background-color: #001D4C;" BorderPane.alignment="CENTER">
+         <children>
+            <VBox alignment="CENTER" prefHeight="121.0" prefWidth="300.0" spacing="10.0">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="DELETE ACCOUNT">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Jesse Chen" textAlignment="CENTER" />
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="University of Arizona" textAlignment="CENTER" />
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </top>
+</BorderPane>

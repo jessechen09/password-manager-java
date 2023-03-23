@@ -55,6 +55,10 @@ public class GeneratePassController extends SmallWindowController {
             invalidLabel.setText("Empty field(s)");
             invalidLabel.setVisible(true);
         }
+        else if(parentController.user.hasAccount(domain,username)) {
+            invalidLabel.setText("This account is already being stored");
+            invalidLabel.setVisible(true);
+        }
         else {
             String pwd = PasswordGenerator.generatePassword(hasNumbers,hasSymbols,hasUpperAndLower);
             while(!isValidPassword(pwd)) {

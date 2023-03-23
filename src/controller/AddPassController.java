@@ -53,6 +53,10 @@ public class AddPassController extends SmallWindowController {
             invalidLabel.setText("Passwords is invalid (e.g. Spaces / Non-ASCII characters / Control characters / Certain special characters)");
             invalidLabel.setVisible(true);
         }
+        else if(parentController.user.hasAccount(domain,username)) {
+            invalidLabel.setText("This account is already being stored");
+            invalidLabel.setVisible(true);
+        }
         else {
             InternetAccount newInternetAccount = new InternetAccount(domain, username, password1);
             parentController.user.addInternetAccount(newInternetAccount);

@@ -141,4 +141,35 @@ public class PasswordManagerModel {
             e.printStackTrace();
         }
     }
+
+    public void removeUser(User user) {
+        try {
+            // Remove the user from the JSON array of users
+            String fileContent = readJsonFile(usersDirectory);
+            JSONArray jsonArray = new JSONArray(fileContent);
+            JSONArray updatedJsonArray = new JSONArray();
+            String username = user.getAccount().getUserName();
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                if (!jsonObject.getString("username").equals(username)) {
+                    updatedJsonArray.put(jsonObject);
+                }
+            }
+            FileWriter writer = new FileWriter(new File(usersDirectory), false);
+            writer.write(updatedJsonArray.toString());
+            writer.flush();
+            writer.close();
+
+            // Remove the user's data file
+            File userFile = new File(DATA_DIRECTORY + username + ".json");
+            if (userFile.exists()) {
+                userFile.delete();
+            }
+
+            // Remove the user from the user map
+            userMap.remove(username);
+        } catch (IOException | JSONException e) {
+            e.printStackTrace();
+        }
+    }
 }

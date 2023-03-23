@@ -1,10 +1,14 @@
 package controller;
 
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import user.InternetAccount;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 /**
  * Controls the user HBox.
@@ -53,4 +57,13 @@ public class UserHBoxController extends HBox {
         // TODO: implement this method!
     }
 
+    public void openWebsite(MouseEvent mouseEvent) {
+        if (Desktop.isDesktopSupported()) {
+            try {
+                Desktop.getDesktop().browse(new URI(internetAccount.getDomain()));
+            } catch (IOException | URISyntaxException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

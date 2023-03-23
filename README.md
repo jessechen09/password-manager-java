@@ -27,8 +27,8 @@ Some tasks you can work on include, but are not limited to:
 |Medium                | |Add a feature that allows users to change their login password.|
 |Medium                | |Add a feature that allows users to change their domains/usernames/passwords for each InternetAccount.|
 |Medium                | |Add a sort feature for the domains, i.e. A-Z and Z-A.|
-|Medium                | |Add a feature that launches the default browser when user clicks on the password domain and open the website.|
-|Hard                  | |Add animations to UI.|
+|Medium                | YES |Add a feature that launches the default browser when user clicks on the password domain and open the website.|
+|Hard                  | NO |Add animations to UI.|
 |Hard                  | |Instead of using .txt files, use a data base to store all the info.|
 |Super Hard            | |Implement security features.|
 

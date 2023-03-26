@@ -12,7 +12,7 @@ import model.Colors;
 /**
  * Abstract class for the small windows, which is basically all windows except the main window.
  *
- * @author Jesse Chen
+ * @author Jesse Chen / Hugo Pereira
  */
 
 public abstract class SmallWindowController {

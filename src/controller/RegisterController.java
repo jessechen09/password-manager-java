@@ -7,7 +7,7 @@ import model.PasswordManagerModel;
 /**
  * Controls the register window.
  *
- * @author Jesse Chen
+ * @author Jesse Chen / Hugo Pereira
  */
 
 public class RegisterController extends SmallWindowController {

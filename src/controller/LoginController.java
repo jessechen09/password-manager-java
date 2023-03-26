@@ -15,7 +15,7 @@ import java.io.IOException;
 /**
  * Controls the login window.
  *
- * @author Jesse Chen
+ * @author Jesse Chen / Hugo Pereira
  */
 
 public class LoginController extends SmallWindowController {

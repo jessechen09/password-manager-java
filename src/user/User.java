@@ -4,7 +4,6 @@ import model.PasswordManagerModel;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -64,6 +63,14 @@ public class User {
 
     public HashMap<String, Map<String,InternetAccount>> getInternetAccounts() {
         return internetAccounts;
+    }
+
+    public List<InternetAccount> getInternetAccountsList() {
+        List<InternetAccount> list = new LinkedList<>();
+        for (Map<String,InternetAccount> map: internetAccounts.values()) {
+            list.addAll(map.values());
+        }
+        return list;
     }
 
     public void addInternetAccount(InternetAccount internetAccount) {

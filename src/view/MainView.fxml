@@ -18,6 +18,7 @@
    <bottom>
       <HBox alignment="CENTER_LEFT" spacing="20.0" style="-fx-background-color: #eaeaea;" BorderPane.alignment="CENTER">
          <children>
+            <Button fx:id="reorderButton" mnemonicParsing="false" style="-fx-background-color: #D35660;" text="Reorder" textFill="WHITE"/>
             <Button fx:id="addNewPasswordButton" mnemonicParsing="false" onAction="#addNewPasswordButtonAction" style="-fx-background-color: #C92D39;" text="Add new password" textAlignment="CENTER" textFill="WHITE" />
             <Button fx:id="addGeneratedPasswordButton" mnemonicParsing="false" onAction="#addGeneratedPasswordButtonAction" style="-fx-background-color: #C92D39;" text="Generate password" textAlignment="CENTER" textFill="WHITE" />
             <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logoutButtonAction" style="-fx-background-color: #8C1F27;" text="Log out" textFill="WHITE"/>

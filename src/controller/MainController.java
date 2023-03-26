@@ -1,6 +1,5 @@
 package controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,12 +19,10 @@ import java.io.IOException;
 /**
  * Controls the main password manager window.
  *
- * @author Jesse Chen
+ * @author Jesse Chen / Hugo Pereira
  */
 
 public class MainController {
-    Stage addPassStage;
-    User user;
 
     @FXML
     Button addNewPasswordButton;
@@ -40,8 +37,15 @@ public class MainController {
     private Button logoutButton;
 
     @FXML
+    private Button reorderButton;
+
+    @FXML
     BorderPane borderPane;
 
+    User user;
+    Stage addPassStage;
+
+    private int clickCount;
     private PasswordManagerModel model;
 
 
@@ -58,6 +62,7 @@ public class MainController {
         System.out.println("This account has these domains stored:");
 
         this.model = model;
+        this.clickCount = 1;
         this.user = model.getCurrentUser();
         for (String domain : user.getInternetAccounts().keySet()) {
             for (InternetAccount internetAccount : user.getInternetAccount(domain)) {
@@ -120,7 +125,19 @@ public class MainController {
             HBox subHBox = (HBox) hbox.getChildren().get(1);
             ((Button) (subHBox.getChildren().get(0))).setText(internetAccount.getUserName());
             Button deleteButton = (Button) subHBox.getChildren().get(2); // get the delete button
-            userHBoxController.initialize(internetAccount);
+
+            userHBoxController.initialize(internetAccount, user.getInternetAccountsList(),passwordsVBox);
+
+            reorderButton.setOnAction(event -> {
+                System.out.println("Reorder button was pressed");
+                if(clickCount%2 == 0) {
+                    userHBoxController.unsortDomain();
+                }
+                else {
+                    userHBoxController.sortDomain();
+                }
+                clickCount++;
+            });
 
             deleteButton.setOnAction(event -> {
                 System.out.println("Delete button was pressed");
@@ -186,4 +203,5 @@ public class MainController {
     public void removeUser() {
         model.removeUser(user);
     }
+
 }

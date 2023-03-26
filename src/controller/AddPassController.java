@@ -2,7 +2,7 @@ package controller;
 /**
  * Controls the view that allows adding a new password.
  *
- * @author Jesse Chen
+ * @author Jesse Chen / Hugo Pereira
  */
 
 import javafx.fxml.FXML;

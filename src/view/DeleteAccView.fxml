@@ -33,8 +33,8 @@
                         <Font size="26.0" />
                      </font>
                   </Text>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Jesse Chen" textAlignment="CENTER" />
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="University of Arizona" textAlignment="CENTER" />
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Jesse Chen  |  Hugo Pereira" textAlignment="CENTER" />
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="University of Arizona  |  NOVA University" textAlignment="CENTER" />
                </children>
             </VBox>
          </children>

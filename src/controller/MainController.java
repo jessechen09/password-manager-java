@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.animation.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,6 +11,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import launcher.PasswordManagerLauncher;
 import model.PasswordManagerModel;
 import user.InternetAccount;
@@ -47,6 +49,8 @@ public class MainController {
 
     private int clickCount;
     private PasswordManagerModel model;
+    private SequentialTransition fadeTransition;
+    private SequentialTransition unfadeTransition;
 
 
     /**
@@ -69,6 +73,18 @@ public class MainController {
                 addPasswordHBox(internetAccount);
             }
         }
+
+        FadeTransition fade = new FadeTransition(Duration.seconds(1), reorderButton);
+        fade.setFromValue(1.0);
+        fade.setToValue(0.8);
+        fade.setAutoReverse(false);
+        fadeTransition = new SequentialTransition(fade);
+
+        FadeTransition unfade = new FadeTransition(Duration.seconds(1), reorderButton);
+        unfade.setFromValue(0.65);
+        unfade.setToValue(1.0);
+        unfade.setAutoReverse(false);
+        unfadeTransition = new SequentialTransition(unfade);
     }
 
     /**
@@ -131,10 +147,16 @@ public class MainController {
             reorderButton.setOnAction(event -> {
                 System.out.println("Reorder button was pressed");
                 if(clickCount%2 == 0) {
+                    unfadeTransition.play();
                     userHBoxController.unsortDomain();
+                    reorderButton.setStyle("-fx-background-color: #C92D39;");
+                    reorderButton.setText("Sort Domains");
                 }
                 else {
+                    fadeTransition.play();
                     userHBoxController.sortDomain();
+                    reorderButton.setStyle("-fx-background-color: #c96f2d;");
+                    reorderButton.setText("Unsort Domains");
                 }
                 clickCount++;
             });

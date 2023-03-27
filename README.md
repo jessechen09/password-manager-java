@@ -33,3 +33,59 @@ Java, OOP, MVC architecture, and JavaFX, to list a few.
 
 This project uses the MVC software design pattern. The FXML files are the views, which are controlled by separate controller classes. There is one main model that stores all the user and account information. The "database" is simulated with .json files, which the model reads when a user logs in or writes to when new users or internet accounts are added.
 Soon the data will be saved in the cloud, in oracle.
+
+## Windows
+
+### Login window
+When you launch the application, you will first see the login window. You can type your username and password to login, or register a new user.
+<p align="center">
+<img src="https://github.com/hugogspereira/password-manager-java/blob/master/screenshots/mychanges/login.jpg?raw=true" width=50%>
+</p>
+
+### Register window
+When you register a new user with a username that already exists, you will get an error. Be sure to choose a unique username! You will also have to type the password twice identically.
+<p align="center">
+<img src="https://github.com/hugogspereira/password-manager-java/blob/master/screenshots/mychanges/register.jpg?raw=true" width=50%>
+</p>
+
+### Main window
+After logging in, you will reach the main window where all the passwords are stored. You can click on the buttons to copy the username and passwords, or even delete that entry.
+<p align="center">
+<img src="https://github.com/hugogspereira/password-manager-java/blob/master/screenshots/mychanges/main.jpg?raw=true" width=80%>
+</p>
+
+### Sort / Unsort Command
+If the user is saving lots of passwords, it can be hard to search for a specific one. As such, if clicked on the "Sort Domain" button a small animation will appear and the domains will be ordered alphabetically.
+<p align="center">
+<img src="https://github.com/hugogspereira/password-manager-java/blob/master/screenshots/mychanges/sortDomain.jpg?raw=true" width=80%>
+</p>
+
+Then when unsorted they will return to their original order:
+<p align="center">
+<img src="https://github.com/hugogspereira/password-manager-java/blob/master/screenshots/mychanges/main.jpg?raw=true" width=80%>
+</p>
+
+### Add new password window
+When you want to add a new password, the main window will be disabled until you finish adding a new password.
+<p align="center">
+<img src="https://github.com/hugogspereira/password-manager-java/blob/master/screenshots/mychanges/addPassMain.jpg?raw=true" width=80%>
+</p>
+
+Make sure your passwords match!
+<p align="center">
+<img src="https://github.com/hugogspereira/password-manager-java/blob/master/screenshots/mychanges/addPassFail.jpg?raw=true" width=50%>
+</p>
+
+### Add generated password window
+The passwords can also be generated automatically by choosing the option to "Generate Password", which includes some options:
+<p align="center">
+<img src="https://github.com/hugogspereira/password-manager-java/blob/master/screenshots/mychanges/addPassGenerated.jpg?raw=true" width=80%>
+</p>
+
+### Delete account window
+If the user intends to delete is account:
+<p align="center">
+<img src="https://github.com/hugogspereira/password-manager-java/blob/master/screenshots/mychanges/deleteAccount.jpg?raw=true" width=80%>
+</p>
+
+## The End

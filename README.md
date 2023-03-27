@@ -11,8 +11,6 @@ Java, OOP, MVC architecture, and JavaFX, to list a few.
 
 ### Task ideas from **jessechen09/password-manager-java**:
 
-Most of them I already work one. 
-
 | Estimated difficulty | Fixed?       | Task        |
 | :------------------: | :----------: | :---------- |
 |Easy                  | **YES**      |Modify the UI.|

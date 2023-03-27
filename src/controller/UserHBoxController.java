@@ -36,19 +36,11 @@ public class UserHBoxController extends HBox {
     private Button copyPasswordButton;
 
     private InternetAccount internetAccount;
-    private List<InternetAccount> internetAccountList;
-    private VBox passwordsVBox;
-    private VBox originalPasswordsVBox;
-    private ObservableList<Node> nodes;
 
     private static Comparator<InternetAccount> domainComparator = Comparator.comparing(InternetAccount::getDomain);
 
-    public void initialize(InternetAccount internetAccount, List<InternetAccount> internetAccountsList, VBox passwordsVBox) {
+    public void initialize(InternetAccount internetAccount) {
         this.internetAccount = internetAccount;
-        this.internetAccountList = internetAccountsList;
-        this.originalPasswordsVBox = passwordsVBox;
-        this.passwordsVBox = passwordsVBox;
-        this.nodes = FXCollections.observableArrayList(passwordsVBox.getChildren());
     }
 
     /**
@@ -95,31 +87,42 @@ public class UserHBoxController extends HBox {
         }
     }
 
-    public void sortDomain() {
+    public void sortDomain(List<InternetAccount> internetAccountsList, VBox passwordsVBox) {
         // Sort the internetAccountList based on the domain name
-        Collections.sort(internetAccountList, domainComparator);
+        Collections.sort(internetAccountsList, domainComparator);
 
         ObservableList<Node> nodes = FXCollections.observableArrayList(passwordsVBox.getChildren());
         nodes.sort((node1, node2) -> {
             Label label1 = (Label) ((Parent) node1).getChildrenUnmodifiable().get(0);
             Label label2 = (Label) ((Parent) node2).getChildrenUnmodifiable().get(0);
-            return domainComparator.compare(getInternetAccountFromLabel(label1), getInternetAccountFromLabel(label2));
+            return domainComparator.compare(getInternetAccountFromLabel(internetAccountsList,label1), getInternetAccountFromLabel(internetAccountsList,label2));
         });
 
         passwordsVBox.getChildren().setAll(nodes);
     }
 
-    private InternetAccount getInternetAccountFromLabel(Label label) {
-        return internetAccountList.stream()
+    private InternetAccount getInternetAccountFromLabel(List<InternetAccount> internetAccountsList, Label label) {
+        return internetAccountsList.stream()
                 .filter(account -> account.getDomain().equals(label.getText()))
                 .findFirst()
                 .orElse(null);
     }
 
-    public void unsortDomain() {
-        VBox aux = passwordsVBox;
-        passwordsVBox = originalPasswordsVBox;
-        originalPasswordsVBox = aux;
+    public void unsortDomain(List<InternetAccount> internetAccountsList, VBox passwordsVBox) {
+        List<InternetAccount> originalOrder = new ArrayList<>(internetAccountsList);
+        // Sort the internetAccountList based on the domain name
+        Collections.sort(internetAccountsList, domainComparator);
+
+        ObservableList<Node> nodes = FXCollections.observableArrayList(passwordsVBox.getChildren());
+        nodes.sort((node1, node2) -> {
+            Label label1 = (Label) ((Parent) node1).getChildrenUnmodifiable().get(0);
+            Label label2 = (Label) ((Parent) node2).getChildrenUnmodifiable().get(0);
+            InternetAccount internetAccount1 = getInternetAccountFromLabel(internetAccountsList,label1);
+            InternetAccount internetAccount2 = getInternetAccountFromLabel(internetAccountsList,label2);
+            int index1 = originalOrder.indexOf(internetAccount1);
+            int index2 = originalOrder.indexOf(internetAccount2);
+            return Integer.compare(index1, index2);
+        });
 
         passwordsVBox.getChildren().setAll(nodes);
     }

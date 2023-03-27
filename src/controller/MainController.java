@@ -142,19 +142,19 @@ public class MainController {
             ((Button) (subHBox.getChildren().get(0))).setText(internetAccount.getUserName());
             Button deleteButton = (Button) subHBox.getChildren().get(2); // get the delete button
 
-            userHBoxController.initialize(internetAccount, user.getInternetAccountsList(),passwordsVBox);
+            userHBoxController.initialize(internetAccount);
 
             reorderButton.setOnAction(event -> {
                 System.out.println("Reorder button was pressed");
                 if(clickCount%2 == 0) {
                     unfadeTransition.play();
-                    userHBoxController.unsortDomain();
+                    userHBoxController.unsortDomain(user.getInternetAccountsList(),passwordsVBox);
                     reorderButton.setStyle("-fx-background-color: #C92D39;");
                     reorderButton.setText("Sort Domains");
                 }
                 else {
                     fadeTransition.play();
-                    userHBoxController.sortDomain();
+                    userHBoxController.sortDomain(user.getInternetAccountsList(),passwordsVBox);
                     reorderButton.setStyle("-fx-background-color: #c96f2d;");
                     reorderButton.setText("Unsort Domains");
                 }

@@ -7,6 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -137,8 +139,21 @@ public class MainController {
             UserHBoxController userHBoxController = loader.getController();
 
             passwordsVBox.getChildren().add(hbox);
-            ((Label) hbox.getChildren().get(0)).setText(internetAccount.getDomain());
-            HBox subHBox = (HBox) hbox.getChildren().get(1);
+            Label label = ((Label) hbox.getChildren().get(0));
+            label.setText(internetAccount.getDomain());
+            Tooltip tooltip1 = new Tooltip();
+            tooltip1.setText("Click on me to redirect to the website!");
+            Tooltip.install(label, tooltip1);
+
+            ImageView icon = (ImageView) hbox.getChildren().get(1);
+            if(internetAccount.getDomain().startsWith("https")) {
+                icon.setImage(new javafx.scene.image.Image("https://cdn0.iconfinder.com/data/icons/essentials-solid-glyphs-vol-1/100/Security-Lock-Secure-Padlock-512.png"));
+                Tooltip tooltip2 = new Tooltip();
+                tooltip2.setText("This website is secure (https://)");
+                Tooltip.install(icon, tooltip2);
+            }
+
+            HBox subHBox = (HBox) hbox.getChildren().get(2);
             ((Button) (subHBox.getChildren().get(0))).setText(internetAccount.getUserName());
             Button deleteButton = (Button) subHBox.getChildren().get(2); // get the delete button
 

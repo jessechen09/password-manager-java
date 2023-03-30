@@ -14,6 +14,7 @@ Java, OOP, MVC architecture, and JavaFX, to list a few.
 | Estimated difficulty | Fixed?       | Task        |
 | :------------------: | :----------: | :---------- |
 |Easy                  | **YES**      |Modify the UI.|
+|Easy                  | **YES**      |Add a secure icon when the domain is https.|
 |Easy                  | **YES**      |Change the extension of the files used to store the data (json).|
 |Easy                  | **YES**      |Do not allow users in the same domain to have the different passwords / duplicate data.|
 |Easy                  | **YES**      |Investigate how things are handled when we have a multiple InternetAccounts with the same domain and optimize.|
@@ -63,6 +64,13 @@ If the user is saving lots of passwords, it can be hard to search for a specific
 Then when unsorted they will return to their original order:
 <p align="center">
 <img src="https://github.com/hugogspereira/password-manager-java/blob/master/screenshots/mychanges/main.jpg?raw=true" width=80%>
+</p>
+
+### Secure Icon and Redirect to Website
+If the user clicks on the domain, a new window will open with the website of that domain. Also, if the website is secure, a small icon will appear next to the domain.
+
+<p align="center">
+<img src="https://github.com/hugogspereira/password-manager-java/blob/master/screenshots/mychanges/addSecureSymbol.jpg?raw=true" width=80%>
 </p>
 
 ### Add new password window

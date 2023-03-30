@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -34,6 +35,8 @@ public class UserHBoxController extends HBox {
     private HBox accHBox;
     @FXML
     private Button copyPasswordButton;
+    @FXML
+    private ImageView secureIcon;
 
     private InternetAccount internetAccount;
 

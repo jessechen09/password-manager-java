@@ -12,7 +12,7 @@ import model.Colors;
 /**
  * Abstract class for the small windows, which is basically all windows except the main window.
  *
- * @author Jesse Chen
+ * @author Jesse Chen / Hugo Pereira
  */
 
 public abstract class SmallWindowController {
@@ -47,5 +47,9 @@ public abstract class SmallWindowController {
     public void fieldOnEnter(KeyEvent event) {
         invalidLabel.setVisible(false);
         if (event.getCode() == KeyCode.ENTER) mainButtonOnAction();
+    }
+
+    public static boolean isValidPassword(String password) {
+        return !(password.matches("[^\\p{ASCII}]") || password.matches("[\\s\\p{C}]") || password.matches(".*[\\\\/\'\"].*"));
     }
 }

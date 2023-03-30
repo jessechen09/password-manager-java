@@ -1,18 +1,16 @@
 package model;
 
+import java.util.Map;
+import org.json.*;
 import user.Account;
 import user.User;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 /**
  * This class is the model and stores all the information by reading the .txt files. This class also accepts new users.
  *
- * @author Jesse Chen
+ * @author Jesse Chen / Hugo Pereira
  */
 
 public class PasswordManagerModel {
@@ -24,25 +22,35 @@ public class PasswordManagerModel {
     public static final String MAIN_DIRECTORY = ".." + File.separator;
     public static final String SRC_DIRECTORY = "src" + File.separator;
     public static final String VIEW_DIRECTORY = MAIN_DIRECTORY + "view" + File.separator;
-    public static final String DATA_DIRECTORY = SRC_DIRECTORY + "data" + File.separator;
+    public static final String DATA_DIRECTORY = SRC_DIRECTORY + "data" + File.separator + "files" + File.separator;
 
     public PasswordManagerModel() {
         userMap = new HashMap<String, User>();
         // The following does not work for some reason:
         // DATA_DIRECTORY + "users.txt"
-        usersDirectory = DATA_DIRECTORY + "users.txt";
+        usersDirectory = DATA_DIRECTORY + "users.json";
         try {
-            Scanner scanner = new Scanner(new File(usersDirectory));
-            String username;
-            String password;
-            while (scanner.hasNextLine()) {
-                username = scanner.next();
-                password = scanner.next();
+            String fileContent = readJsonFile(usersDirectory);
+            JSONArray jsonArray = new JSONArray(fileContent);
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                String username = jsonObject.getString("username");
+                String password = jsonObject.getString("password");
                 userMap.put(username, new User(new Account(username, password)));
             }
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException | JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    private static String readJsonFile(String filename) throws FileNotFoundException {
+        Scanner scanner = new Scanner(new File(filename));
+        String fileContent = "";
+        while (scanner.hasNextLine()) {
+            fileContent += scanner.nextLine();
+        }
+        scanner.close();
+        return fileContent;
     }
 
     //=============== Methods ==========================================================================================
@@ -101,21 +109,67 @@ public class PasswordManagerModel {
      * @param password
      */
     public void addUser(String username, String password) {
-        try {  // add user to database, i.e. "users.txt"
+        try {
             File usersFile = new File(usersDirectory);
-            FileWriter writer = new FileWriter(usersFile, true);
-            writer.write("\n" + username + " " + password);
+            String fileContent = readJsonFile(usersDirectory);
+            JSONArray jsonArray;
+            if (fileContent.isEmpty()) {
+                jsonArray = new JSONArray();
+            } else {
+                jsonArray = new JSONArray(fileContent);
+            }
+            String pwd = password;
+            JSONObject userObject = new JSONObject();
+            userObject.put("username", username);
+            userObject.put("password", pwd);
+            jsonArray.put(userObject);
+            FileWriter writer = new FileWriter(usersFile, false);
+            writer.write(jsonArray.toString());
+            writer.flush();
             writer.close();
 
-            // create username.txt file
-            File userFile = new File(DATA_DIRECTORY + username + ".txt");
+            File userFile = new File(DATA_DIRECTORY + username + ".json");
             userFile.createNewFile();
+            writer = new FileWriter(userFile, false);
+            writer.write("[ ]");
+            writer.flush();
+            writer.close();
 
-            // add user to userMap
-            userMap.put(username, new User(new Account(username, password)));
-        } catch (IOException e) {
+
+            userMap.put(username, new User(new Account(username, pwd)));
+        } catch (IOException | JSONException e) {
             e.printStackTrace();
         }
+    }
 
+    public void removeUser(User user) {
+        try {
+            // Remove the user from the JSON array of users
+            String fileContent = readJsonFile(usersDirectory);
+            JSONArray jsonArray = new JSONArray(fileContent);
+            JSONArray updatedJsonArray = new JSONArray();
+            String username = user.getAccount().getUserName();
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                if (!jsonObject.getString("username").equals(username)) {
+                    updatedJsonArray.put(jsonObject);
+                }
+            }
+            FileWriter writer = new FileWriter(new File(usersDirectory), false);
+            writer.write(updatedJsonArray.toString());
+            writer.flush();
+            writer.close();
+
+            // Remove the user's data file
+            File userFile = new File(DATA_DIRECTORY + username + ".json");
+            if (userFile.exists()) {
+                userFile.delete();
+            }
+
+            // Remove the user from the user map
+            userMap.remove(username);
+        } catch (IOException | JSONException e) {
+            e.printStackTrace();
+        }
     }
 }

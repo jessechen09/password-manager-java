@@ -16,16 +16,17 @@
       </ScrollPane>
    </center>
    <bottom>
-      <HBox alignment="CENTER" prefHeight="40.0" prefWidth="160.5" spacing="155.0" style="-fx-background-color: #eaeaea;" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER_LEFT" spacing="20.0" style="-fx-background-color: #eaeaea;" BorderPane.alignment="CENTER">
          <children>
-            <Button disable="true" mnemonicParsing="false" text="Log out" visible="false" />
-            <Button fx:id="addNewPasswordButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#addNewPasswordButtonAction" prefHeight="27.0" prefWidth="160.5" style="-fx-background-color: #C92D39;" text="Add new password" textAlignment="CENTER" textFill="WHITE" />
-            <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logoutButtonAction" style="-fx-background-color: #C92D39;" text="Log out" textFill="WHITE">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </Button>
+            <Button fx:id="reorderButton" mnemonicParsing="false" style="-fx-background-color: #D35660;" text="Sort Domains" prefWidth="110" prefHeight="20" textFill="WHITE" />
+            <Button fx:id="addNewPasswordButton" mnemonicParsing="false" onAction="#addNewPasswordButtonAction" style="-fx-background-color: #C92D39;" text="Add new password" textAlignment="CENTER" textFill="WHITE" />
+            <Button fx:id="addGeneratedPasswordButton" mnemonicParsing="false" onAction="#addGeneratedPasswordButtonAction" style="-fx-background-color: #C92D39;" text="Generate password" textAlignment="CENTER" textFill="WHITE" />
+            <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logoutButtonAction" style="-fx-background-color: #8C1F27;" text="Log out" textFill="WHITE"/>
+            <Button fx:id="deleteAccButton" mnemonicParsing="false" onAction="#deleteAccButtonAction" style="-fx-background-color: #2A090B;" text="Delete Account" textFill="WHITE"/>
          </children>
+         <padding>
+            <Insets top="10.0" right="10.0" bottom="10.0" left="10.0" />
+         </padding>
          <BorderPane.margin>
             <Insets />
          </BorderPane.margin>
